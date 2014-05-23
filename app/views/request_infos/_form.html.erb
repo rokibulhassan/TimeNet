@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-lg-4">
+    <%= form_for(@request_info) do |f| %>
+        <% if @request_info.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@request_info.errors.count, "error") %> prohibited this request_info from being
+                saved:</h2>
+
+              <ul>
+                <% @request_info.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :first_name, :class => "required" %>
+          <%= f.text_field :first_name, :class => "form-control" %>
+        </div>
+        <div class="field">
+          <%= f.label :last_name, :class => "required" %>
+          <%= f.text_field :last_name, :class => "form-control" %>
+        </div>
+        <div class="field">
+          <%= f.label :email, :class => "required" %>
+          <%= f.text_field :email, :class => "form-control" %>
+        </div>
+        <div class="field">
+          <%= f.label :'How did you hear about us', :class => "required" %>
+          <%= f.text_area :comments, :class => "form-control" %>
+        </div>
+        <div class="field">
+          <%= f.label :"How can we help you", :class => "required" %>
+          <%= f.text_area :query, :class => "form-control" %>
+        </div>
+        <div class="form-actions">
+          <%= f.submit 'Submit request' %>
+        </div>
+        <div class="form-group">
+          <label class="text-danger">*</label> = required field
+        </div>
+    <% end %>
+  </div>
+</div><!-- /.row -->

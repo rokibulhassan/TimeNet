@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-lg-4">
+
+    <%= form_for(@project) do |f| %>
+        <% if @project.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+              <ul>
+                <% @project.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :name, :class => "required" %>
+          <%= f.text_field :name, :class => "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :number, :class => "required" %>
+          <%= f.text_field :number, :class => "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :customer_id, :class => "required" %>
+          <%= link_to 'Create New', new_customer_path, :class => 'btn btn-primary btn-xs' %>
+          <%= select :project, :customer_id, current_user.customers.collect { |c| [c.business_name, c.id] }, {:prompt => 'Select Customer'}, {:class => 'form-control'} %>
+        </div>
+        <div class="form-group">
+          <%= f.label :contact_id, :class => "required" %>
+          <%= link_to 'Create New', new_contact_path, :class => 'btn btn-primary btn-xs' %>
+          <%#= select :project, :contact_ids, Contact.all.collect { |c| [c.name, c.id] }, {:prompt => 'Select Contact'}, {:class => 'form-control'} %>
+          <div id="contact-element">
+            <% for contact in current_user.contacts %>
+                <div class="checkbox-margin">
+                  <%= check_box_tag "project[contact_ids][]", contact.id, @project.contacts.include?(contact) %>
+                  <%= contact.name %>
+                </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :start_date %>
+          <div id="start-date-timepicker" class="input-group date">
+            <%= f.text_field :start_date, "data-format" => "dd/MM/yyyy", :class => "form-control" %>
+            <span class="input-group-addon add-on">
+                  <i class="fa fa-calendar"></i>
+                </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :end_date %>
+          <div id="end-date-timepicker" class="input-group date">
+            <%= f.text_field :end_date, "data-format" => "dd/MM/yyyy", :class => "form-control" %>
+            <span class="input-group-addon add-on">
+                  <i class="fa fa-calendar"></i>
+                </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :notes %>
+          <%= f.text_area :notes, :class => "form-control" %>
+        </div>
+        <div class="form-actions">
+          <%= f.hidden_field :created_by, value: current_user.id %>
+          <%= f.submit %>
+        </div>
+        <div class="form-group">
+          <label class="text-danger">*</label> = required field
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#start-date-timepicker, #end-date-timepicker').datetimepicker();
+    });
+</script>
+

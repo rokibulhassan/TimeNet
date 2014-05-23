@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-lg-4">
+
+    <%= form_for(@contact) do |f| %>
+        <% if @contact.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+              <ul>
+                <% @contact.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :first_name, :class => "required" %>
+          <%= f.text_field :first_name, :class => "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :last_name, :class => "required" %>
+          <%= f.text_field :last_name, :class => "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, :class => "required" %>
+          <%= f.text_field :email, :class => "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, :class => "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :office_phone %>
+          <%= f.text_field :office_phone, :class => "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :mobile_phone %>
+          <%= f.text_field :mobile_phone, :class => "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :contact_method, :class => "required" %>
+          <br>
+
+          <div class="checkbox-margin">
+            <%= f.radio_button :contact_method, 'office_phone', :checked => true %>
+            <%= f.label :contact_method_office_phone, 'Office Phone' %>
+            <br>
+            <%= f.radio_button :contact_method, 'mobile_phone' %>
+            <%= f.label :contact_method_mobile_phone, 'Mobile Phone' %>
+            <br>
+            <%= f.radio_button :contact_method, 'email' %>
+            <%= f.label :contact_method_email, 'E-mail' %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :customer_id, :class => "required" %>
+          <%= link_to 'Create New', new_customer_path, :class => 'btn btn-primary btn-xs' %>
+          <%= select :contact, :customer_id, current_user.customers.collect { |c| [c.business_name, c.id] }, {:prompt => 'Select Customer'}, {:class => 'form-control'} %>
+        </div>
+        <div class="form-actions">
+          <%= f.hidden_field :created_by, value: current_user.id %>
+          <%= f.submit %>
+        </div>
+        <div class="form-group">
+          <label class="text-danger">*</label> = required field
+        </div>
+    <% end %>
+  </div>
+</div>

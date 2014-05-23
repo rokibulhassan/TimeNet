@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  number: MyString
+  customer_id: 1
+  contact_id: 1
+  start_date: 2014-05-08 23:21:42
+  end_date: 2014-05-08 23:21:42
+  notes: MyText
+
+two:
+  name: MyString
+  number: MyString
+  customer_id: 1
+  contact_id: 1
+  start_date: 2014-05-08 23:21:42
+  end_date: 2014-05-08 23:21:42
+  notes: MyText

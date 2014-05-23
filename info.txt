@@ -1,0 +1,12 @@
+https://github.com/rakib063049/KyleCovell.git
+
+
+https://github.com/KCovell/Dolores.git
+  https://github.com/KCovell/Dolores.git
+  
+  
+  http://dolores-allapi-5-12-112687.usw1.nitrousbox.com/
+  
+  email == auth_token == user_id
+  kacovell@gmail.com ==  y1c8j99e5ms3r3 == 2
+  test@2ndclient.ca ==  swwni48pwl6yi61 == 3

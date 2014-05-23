@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Business name:</strong>
+  <%= @customer.business_name %>
+</p>
+
+<p>
+  <strong>Billing address:</strong>
+  <%= @customer.billing_address %>
+</p>
+
+<p>
+  <strong>Street address:</strong>
+  <%= @customer.street_address %>
+</p>
+
+<p>
+  <strong>Suit unit:</strong>
+  <%= @customer.suit_unit %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @customer.city %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @customer.zip_code %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= country(@customer.country_id) %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= state(@customer.state_id) %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @customer.phone %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @customer.website %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @customer.contacts.collect(&:name) %>
+</p>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>

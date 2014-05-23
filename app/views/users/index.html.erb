@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h2>Users</h2>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover ">
+        <thead>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Title</th>
+          <th>Client</th>
+          <th>Permission</th>
+          <th>Office Phone</th>
+          <th>Mobile Phone</th>
+          <th>Email</th>
+          <th>Created On</th>
+          <th>Last Log In</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @users.each do |user| %>
+            <tr>
+              <td><%= user.first_name %></td>
+              <td><%= user.last_name %></td>
+              <td><%= user.title %></td>
+              <td><%= user.try(:client).try(:business_name) %></td>
+              <td><%= user.roles %></td>
+              <td><%= user.office_phone %></td>
+              <td><%= user.mobile_phone %></td>
+              <td><%= user.email %></td>
+              <td><%= formated_datetime(user.created_at) %></td>
+              <td><%= formated_datetime(user.last_sign_in_at) %></td>
+              <td><%= link_to 'Show', users_admin_path(user) %></td>
+              <td><%= link_to 'Edit', edit_users_admin_path(user) %></td>
+              <td><%= link_to 'Destroy', users_admin_path(user), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= link_to 'New User', new_users_admin_path %>
+  </div>
+</div><!-- /.row -->
+

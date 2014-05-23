@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>TimeNet</title>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/">TimeNet</a>
+  </div>
+
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav navbar-right navbar-user">
+      <% if user_signed_in? %>
+          <% if current_user.admin? %>
+              <li><%= link_to "Client", clients_path %></li>
+              <li><%= link_to "User", users_admin_index_path %></li>
+              <li><%= link_to "Requested Info", request_infos_path %></li>
+              <li><%= link_to "Time Log", time_logs_path %></li>
+          <% else %>
+              <li><%= link_to "Dashboard", dashboard_welcomes_path %></li>
+              <li><%= link_to "Customer", customers_path %></li>
+              <li><%= link_to "Contact", contacts_path %></li>
+              <li><%= link_to "Project", projects_path %></li>
+          <% end %>
+          <li class="dropdown user-dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-user"></i> <%= current_user.email %>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <%= link_to edit_user_registration_path(current_user) do %>
+                    <i class="fa fa-user"></i> My Profile
+                <% end %>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to(destroy_user_session_path, :method => :delete) do %>
+                    <i class="fa fa-power-off"></i> Log Out
+                <% end %>
+              </li>
+              <li>
+                <%= link_to(edit_user_registration_path) do %>
+                    <i class="fa fa-cog"></i> Change Password
+                <% end %>
+              </li>
+            </ul>
+          </li>
+      <% else %>
+          <li><%= link_to "Log In", user_session_path %></li>
+          <li><%= link_to "Request Info", new_request_info_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<div class="container" style="margin-top:50px">
+  <%= bootstrap_flash %>
+  <%= yield %>
+</div>
+
+</body>
+</html>
+
+<script type="application/javascript">
+    $("#customer_country_id, #client_country_id").change(function () {
+        var country = $(this).val();
+        var items = "<option value=>Select State</option>";
+        $.ajax({
+            type: 'GET',
+            dataType: "json",
+            url: "<%= load_state_welcomes_path %>",
+            data: { country: country},
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    items += "<option value='" + item.id + "'>" + item.name + "</option>";
+                });
+                $("#customer_state_id").html(items);
+                $("#client_state_id").html(items);
+            }
+        });
+    });
+
+    $("#project_customer_id").change(function () {
+        var customer = $(this).val();
+        var items = "";
+        $.ajax({
+            type: 'GET',
+            dataType: "json",
+            url: "<%= load_contact_welcomes_path %>",
+            data: { customer: customer},
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    items += "<div class=checkbox-margin><input id=project_contact_ids_ name=project[contact_ids][] type=checkbox value='" + item.id + "'>" + item.name + "</div>"
+                });
+                $("#contact-element").html(items);
+            }
+        });
+    });
+</script>
+

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project name:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>Project number:</strong>
+  <%= @project.number %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @project.customer.business_name %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @project.contacts.collect(&:name) %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= formated_date(@project.start_date) %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= formated_date(@project.end_date) %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @project.notes %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

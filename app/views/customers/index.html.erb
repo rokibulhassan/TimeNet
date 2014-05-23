@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h2>Customers</h2>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover ">
+        <thead>
+        <tr>
+          <th>Business name</th>
+          <th>Billing address</th>
+          <th>Street address</th>
+          <th>Suit unit</th>
+          <th>City</th>
+          <th>Zip code</th>
+          <th>Country</th>
+          <th>State</th>
+          <th>Phone</th>
+          <th>Website</th>
+          <th>Contact</th>
+          <th>New Contact</th>
+          <th>New Project</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @customers.each do |customer| %>
+            <tr>
+              <td><%= link_to customer.business_name, customer, :class => 'text-info' %></td>
+              <td><%= customer.billing_address %></td>
+              <td><%= customer.street_address %></td>
+              <td><%= customer.suit_unit %></td>
+              <td><%= customer.city %></td>
+              <td><%= customer.zip_code %></td>
+              <td><%= country(customer.country_id) %></td>
+              <td><%= state(customer.state_id) %></td>
+              <td><%= customer.phone %></td>
+              <td><%= customer.website %></td>
+              <td><%= link_to_contact(customer.contacts) %></td>
+              <td><%= link_to('Create Contact', new_contact_path(customer_id: customer.id), :class => 'text-info', :target => '_blank') %></td>
+              <td><%= link_to('Create Project', new_project_path(customer_id: customer.id), :class => 'text-info', :target => '_blank') %></td>
+              <td><%= link_to 'Show', customer %></td>
+              <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+              <td><%= link_to 'Destroy', customer, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= link_to 'Create Customer', new_customer_path, :class => "btn btn-default" %>
+  </div>
+</div><!-- /.row -->
+

@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h1>Request Infos</h1>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover ">
+        <thead>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Comments</th>
+          <th>Query</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @request_infos.each do |request_info| %>
+            <tr>
+              <td><%= request_info.first_name %></td>
+              <td><%= request_info.last_name %></td>
+              <td><%= request_info.email %></td>
+              <td><%= request_info.comments %></td>
+              <td><%= request_info.query %></td>
+              <td><%= link_to 'Show', request_info %></td>
+              <td><%= link_to 'Edit', edit_request_info_path(request_info) %></td>
+              <td><%= link_to 'Destroy', request_info, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= link_to 'New Request info', new_request_info_path %>
+  </div>
+</div><!-- /.row -->
+
