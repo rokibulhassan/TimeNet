@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513143508) do
+ActiveRecord::Schema.define(version: 20140524170219) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20140513143508) do
     t.string   "phone"
     t.string   "website"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clients_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -131,6 +138,7 @@ ActiveRecord::Schema.define(version: 20140513143508) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "idle_time"
   end
 
   create_table "users", force: true do |t|
@@ -142,7 +150,6 @@ ActiveRecord::Schema.define(version: 20140513143508) do
     t.string   "mobile_phone"
     t.string   "role"
     t.integer  "roles_mask"
-    t.integer  "client_id"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -154,6 +161,7 @@ ActiveRecord::Schema.define(version: 20140513143508) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "client_id"
     t.string   "authentication_token"
   end
 

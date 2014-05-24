@@ -48,10 +48,12 @@ module KyleCovell
         requires :project_id, :type => Integer, :desc => "Project id"
         requires :start_at, :type => String, :desc => "Starting date and time"
         requires :end_at, :type => String, :desc => "Ending date and time"
+        requires :idle_time, :type => Float, :desc => "Idle Time, Floating value"
       end
       post do
         begin
-          time_log = TimeLog.new(user_id: params[:user_id], project_id: params[:project_id], start_at: params[:start_at], end_at: params[:end_at])
+          time_log = TimeLog.new(user_id: params[:user_id], project_id: params[:project_id], start_at: params[:start_at],
+                                 end_at: params[:end_at], idle_time: params[:idle_time])
           time_log.save!
         rescue Exception => ex
           errors = ex.message
