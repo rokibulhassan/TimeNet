@@ -8,6 +8,7 @@
         <tr>
           <th>Start at</th>
           <th>End at</th>
+          <th>Idle Time</th>
           <th>Logged</th>
           <th>User</th>
           <th>Project</th>
@@ -20,6 +21,7 @@
             <tr>
               <td><%= formated_datetime(time_log.start_at) %></td>
               <td><%= formated_datetime(time_log.end_at) %></td>
+              <td><%= time_log.idle_time_str %></td>
               <td><%= time_log.time_logged_str %></td>
               <td><%= time_log.user.name %></td>
               <td><%= time_log.project.name %></td>
