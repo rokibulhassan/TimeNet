@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def set_otp_secret_key
+    return true if self.admin?
     self.otp_secret_key = loop do
       token = User.random_code
       break token unless User.exists?(otp_secret_key: token)
