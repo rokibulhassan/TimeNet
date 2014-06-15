@@ -8,10 +8,12 @@ class User < ActiveRecord::Base
   #validates :client_id, presence: true
   validate :validate_client
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise :two_factor_authenticatable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  has_one_time_password
+
   attr_accessor :admin
 
-  before_create :set_authentication_token
+  before_create :set_authentication_token, :set_otp_secret_key
 
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
 
@@ -50,6 +52,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  def set_otp_secret_key
+    self.otp_secret_key = loop do
+      token = rand(36**6).to_s(36)
+      break token unless User.exists?(otp_secret_key: token)
+    end
+  end
+
   def customers
     Customer.by_client(self.client_id)
   end
@@ -66,6 +75,13 @@ class User < ActiveRecord::Base
     TimeLog.by_project(projects.collect(&:id))
   end
 
+  def send_two_factor_authentication_code
+    UserMailer.otp_code_notification(self, otp_code).deliver
+  end
+
+  def need_two_factor_authentication?(request)
+    not otp_secret_key.nil?
+  end
 
   private
   def validate_client

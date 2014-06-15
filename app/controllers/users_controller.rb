@@ -24,6 +24,7 @@ class UsersController < ApplicationController
         format.html { redirect_to users_admin_path(@user), notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @client }
       else
+        flash.now[:error] = @user.errors.full_messages
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
