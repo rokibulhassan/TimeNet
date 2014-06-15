@@ -11,7 +11,7 @@ KyleCovell::Application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
@@ -77,4 +77,19 @@ KyleCovell::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.assets.debug = true
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      address: 'iqrcode.in',
+      port: 25,
+      domain: 'bitsbridge.com',
+      user_name: 'info@bitsbridge.com',
+      password: 'stayaway',
+      authentication: 'plain',
+      enable_starttls_auto: true}
+  config.action_mailer.default_url_options = {:host => 'calm-fortress-1776.herokuapp.com'}
+
 end
