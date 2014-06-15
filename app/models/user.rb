@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
 
   def set_otp_secret_key
     self.otp_secret_key = loop do
-      token = rand(36**6).to_s(36)
+      token = User.random_code
       break token unless User.exists?(otp_secret_key: token)
     end
   end
@@ -84,6 +84,12 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def self.random_code(size = 6)
+    charset = %w{ 2 3 4 5 6 7 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z}
+    (0...size).map { charset.to_a[rand(charset.size)] }.join
+  end
+
   def validate_client
     self.errors.add(:base, "Failed! Can not change client.") if !new_record? && client_id_changed?
   end
