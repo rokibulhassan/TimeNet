@@ -22,4 +22,18 @@ class ApplicationController < ActionController::Base
     resource.admin? ? clients_path : dashboard_welcomes_path
   end
 
+  protected
+
+  def check_if_admin
+    if signed_in?
+      unless current_user.admin?
+        redirect_to root_url
+        flash[:error] = "You don't have enough permission to  Access this resource!"
+      end
+    else
+      flash[:error] = "Please sign in!"
+      redirect_to user_session_path
+    end
+  end
+
 end

@@ -1,6 +1,7 @@
 class RequestInfosController < ApplicationController
   before_action :set_request_info, only: [:show, :edit, :update, :destroy]
-
+  before_filter :check_if_admin, only: [:index]
+  
   # GET /request_infos
   # GET /request_infos.json
   def index
