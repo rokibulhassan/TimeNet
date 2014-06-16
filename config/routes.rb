@@ -12,6 +12,7 @@ KyleCovell::Application.routes.draw do
   resources :welcomes do
     collection do
       get 'dashboard'
+      get 'about'
       get 'load_state'
       get 'load_contact'
     end

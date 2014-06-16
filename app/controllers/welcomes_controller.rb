@@ -11,6 +11,12 @@ class WelcomesController < ApplicationController
     end
   end
 
+  def about
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def load_state
     @states = State.by_country(params[:country])
     result = @states.collect do |state|
@@ -26,4 +32,5 @@ class WelcomesController < ApplicationController
     end
     render json: result
   end
+
 end
