@@ -26,7 +26,7 @@ class RequestInfosController < ApplicationController
   def create
     @request_info = RequestInfo.new(request_info_params)
     respond_to do |format|
-      if simple_captcha_valid? && @request_info
+      if simple_captcha_valid? && @request_info.save
         format.html { redirect_to @request_info, notice: 'Thank you for your interest, somebody will be in touch soon.' }
       else
         invalid_captcha = "Invalid Captcha, Please enter correct captcha!"
