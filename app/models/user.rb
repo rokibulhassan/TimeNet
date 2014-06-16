@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   #validates :client_id, presence: true
   validate :validate_client
 
-  devise :two_factor_authenticatable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise :two_factor_authenticatable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_one_time_password
 
   attr_accessor :admin
