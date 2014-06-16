@@ -21,3 +21,19 @@
     content: "*";
     color: red;
 }
+
+.simple_captcha {
+    border: 0px !important;
+}
+
+#captcha {
+    display: block;
+    width: 100% !important;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #ffffff;
+    background-image: none;
+}

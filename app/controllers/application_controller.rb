@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include SimpleCaptcha::ControllerHelpers
   protect_from_forgery with: :exception
   before_filter do
     resource = controller_name.singularize.to_sym

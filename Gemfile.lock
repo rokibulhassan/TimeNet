@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/galetahub/simple-captcha.git
+  revision: 2602bf19a63df25929960b5a7721a9d265281ec1
+  specs:
+    simple_captcha (0.1.6)
+
+GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 128f373e151528c9516ea8df32831fc60ac1c35d
   branch: bootstrap3
@@ -208,6 +214,7 @@ DEPENDENCIES
   rails_12factor
   rename
   sass-rails (~> 4.0.0)
+  simple_captcha!
   therubyracer
   turbolinks
   twitter-bootstrap-rails!
