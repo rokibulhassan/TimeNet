@@ -51,6 +51,11 @@
               <%= f.password_field :password_confirmation, :class => "form-control" %>
             </div>
         <% end %>
+        <div class="form-group">
+          <%= f.label :password_change_required_in_next_login %>
+          <%= f.check_box :password_change_required %>
+        </div>
+
         <div class="form-actions">
           <%= f.submit %>
         </div>
