@@ -8,7 +8,6 @@ class Ability
     else
       can :read, :all
     end
-
     can :manage, Customer if user.role?(:create_customers)
     can :manage, Contact if user.role?(:create_contacts)
     can :manage, Project if user.role?(:create_projects)
