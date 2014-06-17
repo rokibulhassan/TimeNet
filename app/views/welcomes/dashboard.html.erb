@@ -26,6 +26,7 @@
           <th>Customer</th>
           <th>Contact</th>
           <th>Total Logs</th>
+          <th>Active Logs Tracked</th>
           <th>Download Logs</th>
         </tr>
         </thead>
@@ -37,6 +38,7 @@
               <td><%= link_to project.customer.business_name, edit_customer_path(project.customer) %></td>
               <td><%= link_to_contact(project.contacts) %></td>
               <td><%= total_time_logged_str(project.time_logged) %></td>
+              <td><%= total_time_logged_str(project.active_time_logged) %></td>
               <td><%= link_to "Download Log", time_logs_path(:format => "csv", :project_ids => project) %></td>
             </tr>
         <% end %>

@@ -11,9 +11,13 @@ class Project < ActiveRecord::Base
   validate :validate_customer
 
   scope :by_customer, ->(customer_id) { where(customer_id: customer_id) }
-  
+
   def time_logged
     time_logs.sum(:logged)
+  end
+
+  def active_time_logged
+    time_logs.sum(:logged) - time_logs.sum(:idle_time)
   end
 
   def self.uniq_number
