@@ -23,7 +23,6 @@
 *  
 **/
 
-
 // Grays
 @gray-darker: #222222;
 @gray-dark: #333333;
@@ -31,14 +30,12 @@
 @gray-light: #999999;
 @gray-lighter: #eeeeee;
 
-
 // Brand Colors
 @brand-primary: #008a16;
 @brand-success: #67f7f7;
 @brand-warning: #f0ad4e;
 @brand-danger: #db0e08;
 @brand-info: #a3a3a3;
-
 
 // Scaffolding
 @body-bg: #fff;
@@ -57,7 +54,6 @@
 @line-height-large: 2.5;
 @line-height-small: 2;
 @component-active-bg: @brand-primary;
-
 
 // Typography
 @font-family-sans-serif: Ubuntu;
@@ -79,7 +75,6 @@
 @headings-font-weight: 500;
 @headings-line-height: 1.1;
 @headings-color: inherit;
-
 
 // Buttons
 @btn-font-weight: normal;
@@ -103,10 +98,9 @@
 @btn-info-border: darken(@btn-info-bg, 5%);
 @btn-link-disabled-color: @gray-light;
 
-
 // Dropdowns
 @dropdown-bg: #aaffbc;
-@dropdown-border: rgba(0,0,0,.15);
+@dropdown-border: rgba(0, 0, 0, .15);
 @dropdown-divider-bg: #b5b5b5;
 @dropdown-link-active-color: #fff;
 @dropdown-link-active-bg: @component-active-bg;
@@ -116,7 +110,6 @@
 @dropdown-link-disabled-color: @gray-light;
 @dropdown-header-color: @gray-light;
 @dropdown-caret-color: #000;
-
 
 // Forms
 @input-bg: #fff;
@@ -133,7 +126,6 @@
 @input-group-addon-bg: @gray-lighter;
 @input-group-addon-border-color: @input-border;
 
-
 // Table
 @table-cell-padding: 8px;
 @table-condensed-cell-padding: 5px;
@@ -144,7 +136,6 @@
 @table-bg-hover: #f5f5f5;
 @table-bg-active: @table-bg-hover;
 @table-border-color: #ddd;
-
 
 // Navbar
 @navbar-height: 40px;
@@ -158,9 +149,9 @@
 @navbar-default-link-color: #777;
 @navbar-default-link-hover-color: @brand-primary;
 @navbar-default-link-hover-bg: transparent;
-@navbar-default-link-active-color:  #555;
+@navbar-default-link-active-color: #555;
 @navbar-default-link-active-bg: darken(@navbar-default-bg, 6.5%);
-@navbar-default-link-disabled-color:  #ccc;
+@navbar-default-link-disabled-color: #ccc;
 @navbar-default-link-disabled-bg: transparent;
 @navbar-default-brand-color: @navbar-default-link-color;
 @navbar-default-brand-hover-color: darken(@navbar-default-link-color, 10%);
@@ -168,7 +159,6 @@
 @navbar-default-toggle-hover-bg: #ddd;
 @navbar-default-toggle-icon-bar-bg: #888;
 @navbar-default-toggle-border-color: #ddd;
-
 
 // Navs Tabs
 @nav-link-padding: 10px 15px;
@@ -186,13 +176,11 @@
 @nav-pills-active-link-hover-bg: @component-active-bg;
 @nav-pills-active-link-hover-color: #fff;
 
-
 // Jumbotron
 @jumbotron-padding: 30px;
 @jumbotron-color: inherit;
 @jumbotron-bg: @gray-lighter;
 @jumbotron-font-size: ceil((@font-size-base * 1.5));
-
 
 // Pagination
 @pagination-bg: #fff;
@@ -215,7 +203,6 @@
 @pager-bg: @pagination-bg;
 @pager-disabled-color: @gray-light;
 
-
 // Form States
 @state-warning-text: #c09853;
 @state-warning-bg: #fcf8e3;
@@ -230,7 +217,6 @@
 @state-info-bg: #d9edf7;
 @state-info-border: darken(spin(@state-info-bg, -10), 7%);
 
-
 // ToolTip
 @tooltip-max-width: 200px;
 @tooltip-color: #fff;
@@ -239,19 +225,17 @@
 @tooltip-arrow-color: @tooltip-bg;
 @tooltip-opacity: .9;
 
-
 // Popover
 @popover-bg: #fff;
 @popover-max-width: 276px;
-@popover-border-color: rgba(0,0,0,.2);
+@popover-border-color: rgba(0, 0, 0, .2);
 @popover-fallback-border-color: #ccc;
 @popover-title-bg: darken(@popover-bg, 3%);
 @popover-arrow-width: 10px;
 @popover-arrow-color: #fff;
 @popover-arrow-outer-width: (@popover-arrow-width + 1);
-@popover-arrow-outer-color: rgba(0,0,0,.25);
+@popover-arrow-outer-color: rgba(0, 0, 0, .25);
 @popover-arrow-outer-fallback-color: #999;
-
 
 // List Group
 @list-group-bg: #fff;
@@ -265,11 +249,9 @@
 @list-group-link-color: #555;
 @list-group-link-heading-color: #333;
 
-
 // Sprites
 @icon-font-path: '../app/fonts/';
 @icon-font-name: glyphicons-halflings-regular;
-
 
 //
 // Since bootstrap was imported above you have access to its mixins which
@@ -280,3 +262,21 @@
 //
 // Example:
 // @linkColor: #ff0000;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  padding-top: 12px;
+  background-color: #f5f5f5;
+}
