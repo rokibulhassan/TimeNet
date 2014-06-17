@@ -6,8 +6,7 @@
       <table class="table table-bordered table-hover ">
         <thead>
         <tr>
-          <th>First name</th>
-          <th>Last name</th>
+          <th>Name</th>
           <th>Title</th>
           <th>Client</th>
           <th>Permission</th>
@@ -25,8 +24,7 @@
         <tbody>
         <% @users.each do |user| %>
             <tr>
-              <td><%= user.first_name %></td>
-              <td><%= user.last_name %></td>
+              <td><%= user.name %></td>
               <td><%= user.title %></td>
               <td><%= user.try(:client).try(:business_name) %></td>
               <td><%= user.roles %></td>
