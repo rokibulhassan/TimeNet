@@ -20,8 +20,6 @@
           <th>New User</th>
           <th>Total time logged</th>
           <th></th>
-          <th></th>
-          <th></th>
         </tr>
         </thead>
 
@@ -38,12 +36,25 @@
               <td><%= state(client.state_id) %></td>
               <td><%= client.phone %></td>
               <td><%= client.website %></td>
-              <td><%= link_to_user(client.users) %></td>
+              <td>
+                <b class="badge alert-info"><%= client.users.count %></b>
+                <%= link_to_user(client.users) %>
+              </td>
               <td><%= link_to('Add User', new_users_admin_path(client_id: client.id), :class => 'text-info', :target => '_blank') %></td>
               <td><%= total_time_logged_str(client.total_time_logged) %></td>
-              <td><%= link_to 'Show', client %></td>
-              <td><%= link_to 'Edit', edit_client_path(client) %></td>
-              <td><%= link_to 'Destroy', client, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              <td>
+                <%= link_to client, title: 'show' do %>
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                <% end %>
+
+                <%= link_to edit_client_path(client), title: 'edit' do %>
+                    <i class="glyphicon glyphicon-edit"></i>
+                <% end %>
+
+                <%= link_to client, method: :delete, data: {confirm: 'Are you sure?'}, title: 'delete' do %>
+                    <i class="glyphicon glyphicon-trash"></i>
+                <% end %>
+              </td>
             </tr>
         <% end %>
         </tbody>
