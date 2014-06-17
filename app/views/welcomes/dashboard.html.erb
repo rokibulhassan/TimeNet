@@ -33,8 +33,8 @@
         <% @projects.each do |project| %>
             <tr>
               <td><%= project.number %></td>
-              <td><%= project.name %></td>
-              <td><%= project.customer.business_name %></td>
+              <td><%= link_to project.name, edit_project_path(project) %></td>
+              <td><%= link_to project.customer.business_name, edit_customer_path(project.customer) %></td>
               <td><%= link_to_contact(project.contacts) %></td>
               <td><%= total_time_logged_str(project.time_logged) %></td>
               <td><%= link_to "Download Log", time_logs_path(:format => "csv", :project_ids => project) %></td>
