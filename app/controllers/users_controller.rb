@@ -10,7 +10,8 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @user = User.new()
+    @user.client_id = params[:client_id] if params[:client_id].present?
   end
 
   def edit
