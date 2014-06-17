@@ -10,6 +10,10 @@ class Client < ActiveRecord::Base
   after_save :associate_users
 
 
+  def total_time_logged
+    self.users.collect { |u| u.time_logs.sum(:logged) }.sum
+  end
+
   private
 
   def associate_users

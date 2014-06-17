@@ -2,7 +2,11 @@ class TimeLogsController < ApplicationController
   before_action :set_time_log, only: [:show, :edit, :update, :destroy]
 
   def index
-    @time_logs = current_user.time_log_records if params[:project].nil?
+    if current_user.admin?
+      @time_logs = TimeLog.scoped
+    else
+      @time_logs = current_user.time_log_records if params[:project].nil?
+    end
     respond_to do |format|
       format.html
       format.csv { render text: TimeLog.to_csv(params[:project_ids]) }
