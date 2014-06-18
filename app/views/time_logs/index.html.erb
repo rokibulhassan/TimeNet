@@ -24,7 +24,7 @@
               <td><%= time_log.idle_time_str %></td>
               <td><%= time_log.time_logged_str %></td>
               <td><%= time_log.try(:user).try(:name) %></td>
-              <td><%= time_log.project.name %></td>
+              <td><%= time_log.try(:project).try(:name) %></td>
               <td><%= link_to 'Destroy', time_log, method: :delete, data: {confirm: 'Are you sure?'} %></td>
             </tr>
         <% end %>
