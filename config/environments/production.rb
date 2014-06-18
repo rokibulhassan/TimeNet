@@ -88,8 +88,12 @@ KyleCovell::Application.configure do
       domain: 'bitsbridge.com',
       user_name: 'info@bitsbridge.com',
       password: 'stayaway',
+      #    address: 'smtp.gmail.com',
+      #    port: 25,
+      #    domain: 'gmail.com',
+      #    user_name: 'censeares@gmail.com',
+      #    password: 'se4%rdcvftgy78uh',
       authentication: 'plain',
       enable_starttls_auto: true}
-  config.action_mailer.default_url_options = {:host => 'calm-fortress-1776.herokuapp.com'}
-
+  config.action_mailer.default_url_options = {:host => 'glacial-basin-6553.herokuapp.com'}
 end
