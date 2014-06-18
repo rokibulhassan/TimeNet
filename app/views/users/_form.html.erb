@@ -20,6 +20,10 @@
           <%= select :user, :client_id, Client.all.collect { |c| [c.business_name, c.id] }, {:prompt => 'Select Client'}, {:class => 'form-control'} %>
         </div>
         <div class="form-group">
+          <%= f.label :billing_rate %>
+          <%= f.text_field :billing_rate, :class => "form-control" %>
+        </div>
+        <div class="form-group">
           <%= f.label :Permissions %>
           <br>
           <% for role in User::ROLES_WITHOUT_ADMIN %>

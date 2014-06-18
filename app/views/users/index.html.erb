@@ -9,6 +9,7 @@
           <th>Name</th>
           <th>Title</th>
           <th>Client</th>
+          <th>Billing Rate</th>
           <th>Permission</th>
           <th>Office Phone</th>
           <th>Mobile Phone</th>
@@ -27,6 +28,7 @@
               <td><%= user.name %></td>
               <td><%= user.title %></td>
               <td><%= user.try(:client).try(:business_name) %></td>
+              <td><%= user.billing_rate %></td>
               <td><%= user.roles %></td>
               <td><%= user.office_phone %></td>
               <td><%= user.mobile_phone %></td>

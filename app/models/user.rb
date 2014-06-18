@@ -14,12 +14,14 @@ class User < ActiveRecord::Base
   attr_accessor :admin
 
   before_create :set_authentication_token, :set_otp_secret_key
+  before_save :round_billing_rate
   after_update :notify_password_changed
+
 
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
 
-  ROLES = %w[admin create_customers create_contacts create_projects]
-  ROLES_WITHOUT_ADMIN = %w[create_customers create_contacts create_projects]
+  ROLES = %w[admin create_customers create_contacts create_projects create_reports]
+  ROLES_WITHOUT_ADMIN = %w[create_customers create_contacts create_projects create_reports]
 
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
@@ -97,6 +99,10 @@ class User < ActiveRecord::Base
 
   def notify_password_changed
     self.update_column(:password_change_required, false) if self.encrypted_password_changed?
+  end
+
+  def round_billing_rate
+    self.billing_rate = self.billing_rate.to_f.round(2)
   end
 
 end
