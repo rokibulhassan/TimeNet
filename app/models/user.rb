@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
   end
 
   def need_two_factor_authentication?(request)
-    not otp_secret_key.nil?
+    not otp_secret_key.nil? || sign_in_count > 0
   end
 
   private
