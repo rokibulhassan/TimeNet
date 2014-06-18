@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   attr_accessor :admin
 
   before_create :set_authentication_token, :set_otp_secret_key
+  after_update :notify_password_changed
 
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
 
@@ -92,6 +93,10 @@ class User < ActiveRecord::Base
 
   def validate_client
     self.errors.add(:base, "Failed! Can not change client.") if !new_record? && client_id_changed?
+  end
+
+  def notify_password_changed
+    self.update_column(:password_change_required, false) if self.encrypted_password_changed?
   end
 
 end
