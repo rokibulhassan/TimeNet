@@ -1,4 +1,5 @@
 class Customer < ActiveRecord::Base
+  paranoid
   has_many :contacts
   has_many :projects
   belongs_to :user, foreign_key: :created_by

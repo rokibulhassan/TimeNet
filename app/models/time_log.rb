@@ -1,4 +1,5 @@
 class TimeLog < ActiveRecord::Base
+  paranoid
   belongs_to :project
   belongs_to :user
 
@@ -21,7 +22,7 @@ class TimeLog < ActiveRecord::Base
     return format("%02d:%02d:%02d", hours, minutes, seconds)
   end
 
-    def idle_time_str
+  def idle_time_str
     seconds = idle_time.to_f % 60
     minutes = (idle_time.to_f / 60) % 60
     hours = idle_time.to_f / (60 * 60)

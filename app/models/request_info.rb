@@ -1,4 +1,5 @@
 class RequestInfo < ActiveRecord::Base
+  paranoid
   apply_simple_captcha
   validates :first_name, presence: true
   validates :last_name, presence: true

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618194524) do
+ActiveRecord::Schema.define(version: 20140618200348) do
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140618194524) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "clients_users", force: true do |t|
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140618194524) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by"
+    t.datetime "deleted_at"
   end
 
   create_table "contacts_projects", force: true do |t|
@@ -92,6 +94,7 @@ ActiveRecord::Schema.define(version: 20140618194524) do
     t.datetime "updated_at"
     t.integer  "created_by"
     t.integer  "client_id"
+    t.datetime "deleted_at"
   end
 
   create_table "projects", force: true do |t|
@@ -105,6 +108,7 @@ ActiveRecord::Schema.define(version: 20140618194524) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by"
+    t.datetime "deleted_at"
   end
 
   create_table "request_infos", force: true do |t|
@@ -115,6 +119,7 @@ ActiveRecord::Schema.define(version: 20140618194524) do
     t.text     "query"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "roles", force: true do |t|
@@ -148,6 +153,7 @@ ActiveRecord::Schema.define(version: 20140618194524) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "idle_time"
+    t.datetime "deleted_at"
   end
 
   create_table "users", force: true do |t|
@@ -179,6 +185,7 @@ ActiveRecord::Schema.define(version: 20140618194524) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.float    "billing_rate"
+    t.datetime "deleted_at"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

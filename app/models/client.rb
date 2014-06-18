@@ -1,4 +1,5 @@
 class Client < ActiveRecord::Base
+  paranoid
   has_many :users
 
   validates :business_name, presence: true, uniqueness: true

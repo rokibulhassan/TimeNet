@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  paranoid
   has_many :time_logs
   belongs_to :client
 
