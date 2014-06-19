@@ -30,7 +30,7 @@
             <% User::ROLES_WITHOUT_ADMIN.in_groups_of(3).each do |roles_array| %>
                 <% roles_array.each do |role| %>
                     <% unless role.nil? %>
-                        <%= check_box_tag "user[roles][]", role, @user.roles.include?(role), class: role %>
+                        <%= check_box_tag "user[roles][]", role, @user.roles.include?(role), id: role %>
                         <%= h "#{role.try(:humanize)}" %>
                         <br>
                     <% end %>

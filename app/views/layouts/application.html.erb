@@ -9,6 +9,7 @@
   <title>TimeNet</title>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -125,7 +126,7 @@
         });
     });
 
-    $(".client_admin").on('click', function () {
+    $("#client_admin").on('click', function () {
         if (this.checked) {
             $("input[name='user[roles][]']").prop('checked', true);
         } else {
