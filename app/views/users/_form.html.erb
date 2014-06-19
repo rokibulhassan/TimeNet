@@ -26,12 +26,19 @@
         <div class="form-group">
           <%= f.label :Permissions %>
           <br>
-          <% for role in User::ROLES_WITHOUT_ADMIN %>
-              <%= check_box_tag "user[roles][]", role, @user.roles.include?(role) %>
-              <%= h role.humanize %>
-              <br>
-          <% end %>
-          <%= hidden_field_tag "user[roles][]", "" %>
+          <table>
+            <% User::ROLES_WITHOUT_ADMIN.in_groups_of(3).each do |roles_array| %>
+                <% roles_array.each do |role| %>
+                    <% unless role.nil? %>
+                        <%= check_box_tag "user[roles][]", role, @user.roles.include?(role), class: role %>
+                        <%= h "#{role.try(:humanize)}" %>
+                        <br>
+                    <% end %>
+                <% end %>
+                <br> <br>
+            <% end %>
+            <%= hidden_field_tag "user[roles][]", "" %>
+          </table>
         </div>
         <div class="form-group">
           <%= f.label :office_phone %>
@@ -69,3 +76,13 @@
     <% end %>
   </div>
 </div>
+
+<script type="application/javascript">
+    $('.client_admin').on('click', function () {
+        if (this.checked) {
+            $("input[name='user[roles][]']").prop('checked', true);
+        } else {
+            $("input[name='user[roles][]']").prop('checked', false);
+        }
+    });
+</script>

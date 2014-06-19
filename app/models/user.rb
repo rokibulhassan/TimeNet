@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
 
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
 
-  ROLES = %w[admin create_customers create_contacts create_projects create_reports]
-  ROLES_WITHOUT_ADMIN = %w[create_customers create_contacts create_projects create_reports]
+  ROLES = %w[admin create_customers edit_customers destroy_customers create_contacts edit_contacts destroy_contacts create_projects edit_projects destroy_projects create_reports client_admin]
+  ROLES_WITHOUT_ADMIN = %w[create_customers edit_customers destroy_customers create_contacts edit_contacts destroy_contacts create_projects edit_projects destroy_projects create_reports client_admin]
 
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
