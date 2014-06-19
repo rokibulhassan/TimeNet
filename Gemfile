@@ -35,5 +35,4 @@ gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'paranoid2'
 gem "chartkick"
 gem 'groupdate'
-gem ' hightop'
 gem 'active_median'
