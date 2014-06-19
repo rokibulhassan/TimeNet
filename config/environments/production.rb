@@ -83,16 +83,11 @@ KyleCovell::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address: 'iqrcode.in',
-      port: 25,
-      domain: 'bitsbridge.com',
-      user_name: 'info@bitsbridge.com',
-      password: 'stayaway',
-      #    address: 'smtp.gmail.com',
-      #    port: 25,
-      #    domain: 'gmail.com',
-      #    user_name: 'censeares@gmail.com',
-      #    password: 'se4%rdcvftgy78uh',
+      address: 'smtp.gmail.com',
+      port: 587,
+      domain: 'gmail.com',
+      user_name: 'kyllecovell@gmail.com',
+      password: 'covel12345',
       authentication: 'plain',
       enable_starttls_auto: true}
   config.action_mailer.default_url_options = {:host => 'glacial-basin-6553.herokuapp.com'}
