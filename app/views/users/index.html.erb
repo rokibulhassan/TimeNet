@@ -47,3 +47,7 @@
   </div>
 </div><!-- /.row -->
 
+<% Groupdate.time_zone = "Pacific Time (US & Canada)" %>
+<%= line_chart TimeLog.group_by_day(:created_at).count %>
+<%= pie_chart TimeLog.group(:user_id).count %>
+<%= area_chart TimeLog.group_by_day(:created_at).group(:user_id).sum(:logged) %>
