@@ -76,13 +76,3 @@
     <% end %>
   </div>
 </div>
-
-<script type="application/javascript">
-    $('.client_admin').on('click', function () {
-        if (this.checked) {
-            $("input[name='user[roles][]']").prop('checked', true);
-        } else {
-            $("input[name='user[roles][]']").prop('checked', false);
-        }
-    });
-</script>

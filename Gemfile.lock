@@ -53,6 +53,7 @@ GEM
     bootstrap-datetimepicker-rails (0.0.11)
     builder (3.1.4)
     cancan (1.6.10)
+    chartkick (1.2.5)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (4.0.1)
@@ -203,6 +204,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.1.2)
   bootstrap-datetimepicker-rails
   cancan
+  chartkick
   coffee-rails (~> 4.0.0)
   devise
   grape

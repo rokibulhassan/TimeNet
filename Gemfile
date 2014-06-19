@@ -33,3 +33,4 @@ gem 'rename'
 gem 'two_factor_authentication'
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'paranoid2'
+gem "chartkick"
