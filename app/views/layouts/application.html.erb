@@ -35,13 +35,15 @@
           <% if current_user.admin? %>
               <li><%= link_to "Client", clients_path %></li>
               <li><%= link_to "Requested Info", request_infos_path %></li>
-              <li><%= link_to "Time Log", time_logs_path %></li>
           <% else %>
               <li><%= link_to "Dashboard", dashboard_welcomes_path %></li>
               <li><%= link_to "Customer", customers_path %></li>
               <li><%= link_to "Contact", contacts_path %></li>
               <li><%= link_to "Project", projects_path %></li>
           <% end %>
+
+          <li><%= link_to "Time Log", time_logs_path %></li>
+
           <li class="dropdown user-dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="glyphicon glyphicon-user"></i> <%= current_user.email %>
@@ -81,8 +83,10 @@
 
 <footer>
   <div class="container text-center">
-    <%= link_to "#" do %>
-        <span class="btn btn-sm btn-info"><i class="glyphicon glyphicon-download"></i>Download manager</span>
+    <% if user_signed_in? %>
+        <%= link_to download_manager_welcomes_path do %>
+            <span class="btn btn-sm btn-info"><i class="glyphicon glyphicon-download"></i>Download manager</span>
+        <% end %>
     <% end %>
   </div>
 </footer>

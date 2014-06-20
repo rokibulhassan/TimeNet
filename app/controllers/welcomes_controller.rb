@@ -17,6 +17,13 @@ class WelcomesController < ApplicationController
     end
   end
 
+  def download_manager
+    respond_to do |format|
+      format.html
+    end
+  end
+
+
   def load_state
     @states = State.by_country(params[:country])
     result = @states.collect do |state|
