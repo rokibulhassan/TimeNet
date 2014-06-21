@@ -93,48 +93,51 @@
 </html>
 
 <script type="application/javascript">
-    $("#customer_country_id, #client_country_id").change(function () {
-        var country = $(this).val();
-        var items = "<option value=>Select State</option>";
-        $.ajax({
-            type: 'GET',
-            dataType: "json",
-            url: "<%= load_state_welcomes_path %>",
-            data: { country: country},
-            success: function (data) {
-                $.each(data, function (index, item) {
-                    items += "<option value='" + item.id + "'>" + item.name + "</option>";
-                });
-                $("#customer_state_id").html(items);
-                $("#client_state_id").html(items);
+    $(function () {
+
+        $("#customer_country_id, #client_country_id").change(function () {
+            var country = $(this).val();
+            var items = "<option value=>Select State</option>";
+            $.ajax({
+                type: 'GET',
+                dataType: "json",
+                url: "<%= load_state_welcomes_path %>",
+                data: { country: country},
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        items += "<option value='" + item.id + "'>" + item.name + "</option>";
+                    });
+                    $("#customer_state_id").html(items);
+                    $("#client_state_id").html(items);
+                }
+            });
+        });
+
+        $("#project_customer_id").change(function () {
+            var customer = $(this).val();
+            var items = "";
+            $.ajax({
+                type: 'GET',
+                dataType: "json",
+                url: "<%= load_contact_welcomes_path %>",
+                data: { customer: customer},
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        items += "<div class=checkbox-margin><input id=project_contact_ids_ name=project[contact_ids][] type=checkbox value='" + item.id + "'>" + item.name + "</div>"
+                    });
+                    $("#contact-element").html(items);
+                }
+            });
+        });
+
+        $("#client_admin").on('click', function () {
+            if (this.checked) {
+                $("input[name='user[roles][]']").prop('checked', true).attr('disabled', true);
+                $(this).attr('disabled', false);
+            } else {
+                $("input[name='user[roles][]']").prop('checked', false).attr('disabled', false);
             }
         });
-    });
-
-    $("#project_customer_id").change(function () {
-        var customer = $(this).val();
-        var items = "";
-        $.ajax({
-            type: 'GET',
-            dataType: "json",
-            url: "<%= load_contact_welcomes_path %>",
-            data: { customer: customer},
-            success: function (data) {
-                $.each(data, function (index, item) {
-                    items += "<div class=checkbox-margin><input id=project_contact_ids_ name=project[contact_ids][] type=checkbox value='" + item.id + "'>" + item.name + "</div>"
-                });
-                $("#contact-element").html(items);
-            }
-        });
-    });
-
-    $("#client_admin").on('click', function () {
-        if (this.checked) {
-            $("input[name='user[roles][]']").prop('checked', true).attr('disabled', true);
-            $(this).attr('disabled', false);
-        } else {
-            $("input[name='user[roles][]']").prop('checked', false).attr('disabled', false);
-        }
     });
 </script>
 
