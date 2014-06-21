@@ -130,9 +130,10 @@
 
     $("#client_admin").on('click', function () {
         if (this.checked) {
-            $("input[name='user[roles][]']").prop('checked', true);
+            $("input[name='user[roles][]']").prop('checked', true).attr('disabled', true);
+            $(this).attr('disabled', false);
         } else {
-            $("input[name='user[roles][]']").prop('checked', false);
+            $("input[name='user[roles][]']").prop('checked', false).attr('disabled', false);
         }
     });
 </script>

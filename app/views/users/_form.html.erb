@@ -26,19 +26,20 @@
         <div class="form-group">
           <%= f.label :Permissions %>
           <br>
-          <table>
-            <% User::ROLES_WITHOUT_ADMIN.in_groups_of(3).each do |roles_array| %>
+          <% User::ROLES_WITHOUT_ADMIN.in_groups_of(3).each do |roles_array| %>
+              <div class="row">
                 <% roles_array.each do |role| %>
-                    <% unless role.nil? %>
-                        <%= check_box_tag "user[roles][]", role, @user.roles.include?(role), id: role %>
-                        <%= h "#{role.try(:humanize)}" %>
-                        <br>
-                    <% end %>
+                    <div class="col-md-4">
+                      <% unless role.nil? %>
+                          <%= check_box_tag "user[roles][]", role, @user.roles.include?(role), id: role %>
+                          <%= h "#{role.try(:humanize)}" %>
+                      <% end %>
+                    </div>
                 <% end %>
-                <br> <br>
-            <% end %>
-            <%= hidden_field_tag "user[roles][]", "" %>
-          </table>
+              </div>
+              <br> <br>
+          <% end %>
+          <%= hidden_field_tag "user[roles][]", "" %>
         </div>
         <div class="form-group">
           <%= f.label :office_phone %>
