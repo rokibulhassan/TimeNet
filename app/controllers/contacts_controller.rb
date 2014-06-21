@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
     if current_user.admin?
       @contacts = Contact.all
     else
-      @contacts = current_user.contacts
+      @contacts = current_client.contacts
     end
   end
 

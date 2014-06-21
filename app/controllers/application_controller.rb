@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   end
   before_filter :update_sanitized_params, if: :devise_controller?
 
+  helper_method :current_client
 
   def update_sanitized_params
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:password_change_required) }
@@ -20,6 +21,10 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     resource.admin? ? clients_path : dashboard_welcomes_path
+  end
+
+  def current_client
+    signed_in? ? current_user.client : nil
   end
 
   protected

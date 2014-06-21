@@ -7,7 +7,7 @@ class CustomersController < ApplicationController
     if current_user.admin?
       @customers = Customer.all
     else
-      @customers = current_user.customers
+      @customers = current_client.customers
     end
   end
 

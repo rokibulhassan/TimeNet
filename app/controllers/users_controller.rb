@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if current_user.admin?
       @users = User.all
     else
-      @users = User.by_client(current_user.try(:client_id))
+      @users = current_client.users
     end
   end
 

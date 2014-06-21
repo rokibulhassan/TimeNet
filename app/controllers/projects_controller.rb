@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
     if current_user.admin?
       @projects = Project.all
     else
-      @projects = current_user.projects
+      @projects = current_client.projects
     end
   end
 
