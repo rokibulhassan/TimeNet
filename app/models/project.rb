@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :contacts
   belongs_to :user, foreign_key: :created_by
   has_many :time_logs
+  belongs_to :client
 
   validates :name, presence: true
   validates :number, presence: true

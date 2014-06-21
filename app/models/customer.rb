@@ -2,6 +2,7 @@ class Customer < ActiveRecord::Base
   paranoid
   has_many :contacts
   has_many :projects
+  belongs_to :client
   belongs_to :user, foreign_key: :created_by
 
   validates :business_name, presence: true, uniqueness: true
@@ -10,7 +11,7 @@ class Customer < ActiveRecord::Base
 
   attr_accessor :contact_ids
 
-  before_save :associate_client
+  #before_save :associate_client
   after_save :associate_contacts
 
   scope :by_client, ->(client_id) { where(client_id: client_id) }

@@ -3,6 +3,7 @@ class Contact < ActiveRecord::Base
   has_and_belongs_to_many :projects
   belongs_to :user, foreign_key: :created_by
   belongs_to :customer
+  belongs_to :client
 
   validates :first_name, presence: true
   validates :last_name, presence: true

@@ -1,6 +1,9 @@
 class Client < ActiveRecord::Base
   paranoid
   has_many :users
+  has_many :customers
+  has_many :contacts
+  has_many :projects
 
   validates :business_name, presence: true, uniqueness: true
   validates :phone, presence: true

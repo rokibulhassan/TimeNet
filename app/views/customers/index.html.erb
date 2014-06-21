@@ -17,6 +17,7 @@
           <th>Phone</th>
           <th>Website</th>
           <th>Contact</th>
+          <th>Client</th>
           <th>New Contact</th>
           <th>New Project</th>
           <th></th>
@@ -39,6 +40,7 @@
               <td><%= customer.phone %></td>
               <td><%= customer.website %></td>
               <td><%= link_to_contact(customer.contacts) %></td>
+              <td><%= customer.try(:client).try(:business_name) %></td>
               <td><%= link_to('Create Contact', new_contact_path(customer_id: customer.id), :class => 'text-info', :target => '_blank') %></td>
               <td><%= link_to('Create Project', new_project_path(customer_id: customer.id), :class => 'text-info', :target => '_blank') %></td>
               <td><%= link_to 'Show', customer %></td>

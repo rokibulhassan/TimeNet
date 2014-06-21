@@ -14,6 +14,7 @@
           <th>Mobile phone</th>
           <th>Contact method</th>
           <th>Customer</th>
+          <th>Client</th>
           <th></th>
           <th></th>
           <th></th>
@@ -31,6 +32,7 @@
               <td><%= contact.mobile_phone %></td>
               <td><%= contact.contact_method %></td>
               <td><%= contact.try(:customer).try(:business_name) %></td>
+              <td><%= contact.try(:client).try(:business_name) %></td>
               <td><%= link_to 'Show', contact %></td>
               <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
               <td><%= link_to 'Destroy', contact, method: :delete, data: {confirm: 'Are you sure?'} %></td>
