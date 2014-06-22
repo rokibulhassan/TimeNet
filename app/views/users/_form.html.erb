@@ -16,7 +16,7 @@
         </div>
         <div class="form-group">
           <%= f.label :client_id, :class => "required" %>
-          <%= link_to 'Create New', new_contact_path, :class => 'btn btn-primary btn-xs' %>
+          <%= link_to 'Create New', new_client_path, :class => 'btn btn-primary btn-xs' %>
           <%= select :user, :client_id, @clients.collect { |c| [c.business_name, c.id] }, {:prompt => 'Select Client'}, {:class => 'form-control'} %>
         </div>
         <div class="form-group">
