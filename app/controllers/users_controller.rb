@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :resolve_prerequisite, only: [:new, :edit, :update]
   load_and_authorize_resource
 
   def index
@@ -15,7 +16,6 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new()
-    @user.client_id = params[:client_id] if params[:client_id].present?
   end
 
   def edit
@@ -61,6 +61,10 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
     @user.admin = true if current_user.admin?
+  end
+
+  def resolve_prerequisite
+    @clients = current_user.admin? ? Client.scoped : Client.where(id: current_client.id)
   end
 
   def user_params

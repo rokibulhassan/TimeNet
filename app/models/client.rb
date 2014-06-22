@@ -4,6 +4,7 @@ class Client < ActiveRecord::Base
   has_many :customers
   has_many :contacts
   has_many :projects
+  has_many :time_logs
 
   validates :business_name, presence: true, uniqueness: true
   validates :phone, presence: true

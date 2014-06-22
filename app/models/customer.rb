@@ -5,7 +5,7 @@ class Customer < ActiveRecord::Base
   belongs_to :client
   belongs_to :user, foreign_key: :created_by
 
-  validates :business_name, presence: true, uniqueness: true
+  validates :business_name, presence: true, uniqueness: {scope: :client_id}
   validates :phone, presence: true
   validates :zip_code, numericality: true, :allow_blank => true
 

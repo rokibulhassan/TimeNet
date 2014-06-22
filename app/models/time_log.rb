@@ -2,8 +2,9 @@ class TimeLog < ActiveRecord::Base
   paranoid
   belongs_to :project
   belongs_to :user
+  belongs_to :client
 
-  before_save :set_time_logged
+  before_save :set_time_logged, :associate_client
   scope :by_project, ->(project_ids) { where(project_id: project_ids) }
 
   def self.to_csv(project_ids)
@@ -32,5 +33,9 @@ class TimeLog < ActiveRecord::Base
   private
   def set_time_logged
     self.logged=(self.end_at - self.start_at)
+  end
+
+  def associate_client
+    self.client_id = self.user.client_id
   end
 end

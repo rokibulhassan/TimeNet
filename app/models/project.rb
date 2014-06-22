@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
   belongs_to :customer
   has_and_belongs_to_many :contacts
   belongs_to :user, foreign_key: :created_by
-  has_many :time_logs
+  has_many :time_logs, dependent: :destroy
   belongs_to :client
 
   validates :name, presence: true

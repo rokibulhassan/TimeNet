@@ -38,7 +38,11 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    role?('admin')
+    role?(:admin)
+  end
+
+  def client_admin?
+    role?(:client_admin)
   end
 
   def name

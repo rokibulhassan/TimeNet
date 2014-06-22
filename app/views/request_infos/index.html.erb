@@ -12,8 +12,6 @@
           <th>Comments</th>
           <th>Query</th>
           <th></th>
-          <th></th>
-          <th></th>
         </tr>
         </thead>
 
@@ -25,9 +23,19 @@
               <td><%= request_info.email %></td>
               <td><%= request_info.comments %></td>
               <td><%= request_info.query %></td>
-              <td><%= link_to 'Show', request_info %></td>
-              <td><%= link_to 'Edit', edit_request_info_path(request_info) %></td>
-              <td><%= link_to 'Destroy', request_info, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              <td>
+                <%= link_to request_info, title: 'show' do %>
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                <% end %>
+
+                <%= link_to edit_request_info_path(request_info), title: 'edit' do %>
+                    <i class="glyphicon glyphicon-edit"></i>
+                <% end %>
+
+                <%= link_to request_info, method: :delete, data: {confirm: 'Are you sure?'}, title: 'delete' do %>
+                    <i class="glyphicon glyphicon-trash"></i>
+                <% end %>
+              </td>
             </tr>
         <% end %>
         </tbody>

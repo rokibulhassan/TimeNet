@@ -56,7 +56,7 @@
         <div class="form-group">
           <%= f.label :customer_id, :class => "required" %>
           <%= link_to 'Create New', new_customer_path, :class => 'btn btn-primary btn-xs' %>
-          <%= select :contact, :customer_id, current_user.customers.collect { |c| [c.business_name, c.id] }, {:prompt => 'Select Customer'}, {:class => 'form-control'} %>
+          <%= select :contact, :customer_id, current_client.customers.collect { |c| [c.business_name, c.id] }, {:prompt => 'Select Customer'}, {:class => 'form-control'} %>
         </div>
         <div class="form-actions">
           <%= f.hidden_field :created_by, value: current_user.id %>

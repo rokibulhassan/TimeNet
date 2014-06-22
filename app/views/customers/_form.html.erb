@@ -57,7 +57,7 @@
           <%= f.label :'Primary Contact', :class => "required" %>
           <%= link_to 'Create New', new_contact_path, :class => 'btn btn-primary btn-xs' %>
           <%#= select :customer, :contact_ids, Contact.all.collect { |c| [c.name, c.id] }, {:prompt => 'Select Contact'}, {:class => 'form-control'} %>
-          <% for contact in current_user.contacts %>
+          <% for contact in current_client.contacts %>
               <div class="checkbox-margin">
                 <%= check_box_tag "customer[contact_ids][]", contact.id, @customer.contacts.include?(contact) %>
                 <%= contact.name %>

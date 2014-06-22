@@ -1,33 +1,51 @@
 <%= form_for(@time_log) do |f| %>
-  <% if @time_log.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@time_log.errors.count, "error") %> prohibited this time_log from being saved:</h2>
+    <% if @time_log.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@time_log.errors.count, "error") %> prohibited this time_log from being saved:</h2>
 
-      <ul>
-      <% @time_log.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @time_log.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :start_at %>
+      <div id="start-date-timepicker" class="input-group date">
+        <%= f.text_field :start_at, "data-format" => "dd/MM/yyyy HH:MM", :class => "form-control" %>
+        <span class="input-group-addon add-on">
+                  <i class="fa fa-calendar"></i>
+                </span>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :start_at %><br>
-    <%= f.datetime_select :start_at %>
-  </div>
-  <div class="field">
-    <%= f.label :end_at %><br>
-    <%= f.datetime_select :end_at %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= select :time_log, :user_id, User.all.collect { |c| [c.name, c.id] }, {:prompt => 'Select User'}, {:class => 'form-control'} %>
-  </div>
-  <div class="field">
-    <%= f.label :project_id %><br>
-    <%= select :time_log, :project_id, Project.all.collect { |c| [c.name, c.id] }, {:prompt => 'Select Project'}, {:class => 'form-control'} %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="form-group">
+      <%= f.label :end_at %>
+      <div id="end-date-timepicker" class="input-group date">
+        <%= f.text_field :end_at, "data-format" => "dd/MM/yyyy HH:MM", :class => "form-control" %>
+        <span class="input-group-addon add-on">
+                  <i class="fa fa-calendar"></i>
+                </span>
+      </div>
+    </div>
+    <div class="field">
+      <%= f.label :user_id %>
+      <br>
+      <%= select :time_log, :user_id, @users.collect { |c| [c.name, c.id] }, {:prompt => 'Select User'}, {:class => 'form-control'} %>
+    </div>
+    <div class="field">
+      <%= f.label :project_id %>
+      <br>
+      <%= select :time_log, :project_id, @projects.collect { |c| [c.name, c.id] }, {:prompt => 'Select Project'}, {:class => 'form-control'} %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>
+
+<script type="text/javascript">
+    $(function () {
+        $('#start-date-timepicker, #end-date-timepicker').datetimepicker();
+    });
+</script>

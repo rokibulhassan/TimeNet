@@ -26,7 +26,7 @@
           <%= f.text_field :street_address, :class => "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :suit_unit %>
+          <%= f.label :'Suite / Unit' %>
           <%= f.text_field :suit_unit, :class => "form-control" %>
         </div>
         <div class="form-group">
@@ -57,7 +57,7 @@
           <%= f.label :primary_user, :class => "required" %>
           <%= link_to 'Create New', new_users_admin_path, :class => 'btn btn-primary btn-xs' %>
           <%#= select :client, :user_ids, User.all.collect { |c| [c.name, c.id] }, {:prompt => 'Select User'}, {:class => 'form-control'} %>
-          <% for user in User.all %>
+          <% for user in User.scoped %>
               <div class="checkbox-margin">
                 <%= check_box_tag "client[user_ids][]", user.id, @client.users.include?(user) %>
                 <%= user.name %>

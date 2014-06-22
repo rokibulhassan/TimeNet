@@ -1,11 +1,14 @@
 class TimeLogsController < ApplicationController
   before_action :set_time_log, only: [:show, :edit, :update, :destroy]
+  before_action :resolve_prerequisite, only: [:new, :edit, :update]
 
   def index
     if current_user.admin?
       @time_logs = TimeLog.scoped
+    elsif current_user.client_admin?
+      @time_logs = current_client.time_logs if params[:project].nil?
     else
-      @time_logs = current_user.time_log_records if params[:project].nil?
+      @time_logs = current_user.time_logs if params[:project].nil?
     end
     respond_to do |format|
       format.html
@@ -60,6 +63,11 @@ class TimeLogsController < ApplicationController
   private
   def set_time_log
     @time_log = TimeLog.find(params[:id])
+  end
+
+  def resolve_prerequisite
+    @users = current_user.admin? ? User.scoped : current_client.users
+    @projects = current_user.admin? ? Project.scoped : current_client.projects
   end
 
   def time_log_params

@@ -7,7 +7,7 @@ class WelcomesController < ApplicationController
     if current_user.admin?
       @projects = Project.all
     else
-      @projects = current_user.projects.order('created_at DESC')
+      @projects = current_client.projects.order('created_at DESC')
     end
   end
 
