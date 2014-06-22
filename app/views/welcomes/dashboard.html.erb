@@ -9,7 +9,9 @@
         <small>Last logged in on:</small> <%= formated_datetime(current_user.last_sign_in_at) %>
       </h4>
       <% if current_user.password_change_required? %>
-          <small>You did not yet update your password, <br>Please Update your profile or password!</small>
+          <small style="color: red; font-size: 13px;">
+            You did not yet update your password, <br>Please Update your profile or password!
+          </small>
       <% end %>
     </div>
   </div>
