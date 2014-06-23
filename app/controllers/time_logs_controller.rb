@@ -1,6 +1,7 @@
 class TimeLogsController < ApplicationController
   before_action :set_time_log, only: [:show, :edit, :update, :destroy]
   before_action :resolve_prerequisite, only: [:new, :edit, :update]
+  load_and_authorize_resource
 
   def index
     if current_user.admin?

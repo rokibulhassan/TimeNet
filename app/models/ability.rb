@@ -21,6 +21,6 @@ class Ability
     can [:edit, :update], Project if user.role?(:edit_projects)
     can :destroy, Project if user.role?(:destroy_projects)
 
-    can :manage, [User, Customer, Contact, Project], :client_id => user.client_id if user.client_admin?
+    can :manage, [User, Customer, Contact, Project, TimeLog], :client_id => user.client_id if user.client_admin?
   end
 end
