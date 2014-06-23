@@ -1,4 +1,13 @@
 <div class="row">
+  <% if current_user.password_change_required? %>
+      <div class="col-md-12 alert fade in alert-warning alert-dismissable">
+        <button aria-hidden="true" class="close" data-dismiss="alert" type="button">×</button>
+
+        <p style="font-size: 14px; color: red;">
+          Please update your password now clicking <%= link_to "here", edit_user_registration_path %>
+        </p>
+      </div>
+  <% end %>
   <div class="col-md-6">
     <h4>
       <small>Welcome back,</small> <%= current_user.name %></h4>
@@ -8,11 +17,6 @@
       <h4>
         <small>Last logged in on:</small> <%= formated_datetime(current_user.last_sign_in_at) %>
       </h4>
-      <% if current_user.password_change_required? %>
-          <small style="color: red; font-size: 13px;">
-            You did not yet update your password, <br>Please Update your profile or password!
-          </small>
-      <% end %>
     </div>
   </div>
 
