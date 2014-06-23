@@ -10,15 +10,15 @@ class Ability
     end
 
     can :create, Customer if user.role?(:create_customers)
-    can :edit, Customer if user.role?(:edit_customers)
+    can [:edit, :update], Customer if user.role?(:edit_customers)
     can :destroy, Customer if user.role?(:destroy_customers)
 
     can :create, Contact if user.role?(:create_contacts)
-    can :edit, Contact if user.role?(:edit_contacts)
+    can [:edit, :update], Contact if user.role?(:edit_contacts)
     can :destroy, Contact if user.role?(:destroy_contacts)
 
     can :create, Project if user.role?(:create_projects)
-    can :edit, Project if user.role?(:edit_projects)
+    can [:edit, :update], Project if user.role?(:edit_projects)
     can :destroy, Project if user.role?(:destroy_projects)
 
     can :manage, [User, Customer, Contact, Project], :client_id => user.client_id if user.client_admin?

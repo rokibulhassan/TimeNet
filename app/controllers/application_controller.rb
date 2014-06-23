@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = "You don't have enough permission to  Access this resource!"
+    flash[:error] = "You do not have permission to perform that task.  Please contact your administrator for further details."
     redirect_to root_url
   end
 
