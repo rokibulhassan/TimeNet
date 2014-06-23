@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "You do not have permission to perform that task.  Please contact your administrator for further details."
-    redirect_to root_url
+    redirect_to current_user.admin? ? clients_path : dashboard_welcomes_path
   end
 
   def after_sign_in_path_for(resource)
