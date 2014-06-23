@@ -24,7 +24,6 @@ gem 'less-rails'
 gem 'twitter-bootstrap-rails',
     :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git',
     :branch => "bootstrap3"
-gem 'bootstrap-datetimepicker-rails'
 gem 'devise'
 gem 'cancan'
 gem 'grape'
@@ -36,3 +35,5 @@ gem 'paranoid2'
 gem "chartkick"
 gem 'groupdate'
 gem 'active_median'
+gem 'momentjs-rails', '~> 2.5.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0.1'
