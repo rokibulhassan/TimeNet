@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :resolve_prerequisite, only: [:new, :edit, :update]
+  before_action :resolve_prerequisite, only: [:new, :edit, :create, :update]
   load_and_authorize_resource
 
   def index
