@@ -14,6 +14,7 @@ class Contact < ActiveRecord::Base
   validate :validate_customer
 
   scope :by_customer, ->(customer_id) { where(customer_id: customer_id) }
+  scope :alphabetically, ->{ order("last_name ASC")}
 
   def name
     [self.first_name, self.last_name].join(" ")

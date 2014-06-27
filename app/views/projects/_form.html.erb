@@ -32,10 +32,16 @@
           <%= link_to 'Create New', new_contact_path, :class => 'btn btn-primary btn-xs' %>
           <%#= select :project, :contact_ids, Contact.all.collect { |c| [c.name, c.id] }, {:prompt => 'Select Contact'}, {:class => 'form-control'} %>
           <div id="contact-element">
-            <% for contact in current_client.contacts %>
-                <div class="checkbox-margin">
-                  <%= check_box_tag "project[contact_ids][]", contact.id, @project.contacts.include?(contact) %>
-                  <%= contact.name %>
+            <% current_client.contacts.alphabetically.in_groups_of(2).each do |contacts| %>
+                <div class="row">
+                  <% contacts.each do |contact| %>
+                      <div class="col-md-6">
+                        <% unless contact.nil? %>
+                            <%= check_box_tag "project[contact_ids][]", contact.id, @project.contacts.include?(contact) %>
+                            <%= contact.name %>
+                        <% end %>
+                      </div>
+                  <% end %>
                 </div>
             <% end %>
           </div>
