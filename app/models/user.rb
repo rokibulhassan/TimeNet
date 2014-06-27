@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
     role?(:client_admin)
   end
 
+  def can_create_reports?
+    role?(:create_reports)
+  end
+
   def name
     [self.first_name, self.last_name].join(" ")
   end

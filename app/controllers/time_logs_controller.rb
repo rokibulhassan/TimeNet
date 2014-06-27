@@ -13,7 +13,7 @@ class TimeLogsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.csv { send_data TimeLog.to_csv(params[:project_ids]), :filename => "#{params[:file_name]}-#{Time.zone.now.strftime("%d-%m-%y")}.csv" }
+      format.csv { send_data TimeLog.to_csv(params[:project_ids]), :filename => "#{params[:file_name]}-#{Time.zone.now.strftime("%d-%m-%y")}.csv" } if current_user.can_create_reports?
     end
   end
 

@@ -1,3 +1,4 @@
+<% disabled = current_user.can_create_reports? ? "" : "disabled" %>
 <div class="row">
   <% if current_user.password_change_required? %>
       <div class="col-md-12 alert fade in alert-warning alert-dismissable">
@@ -45,14 +46,20 @@
               <td><%= link_to_contact(project.contacts) %></td>
               <td><%= total_time_logged_str(project.time_logged) %></td>
               <td><%= total_time_logged_str(project.active_time_logged) %></td>
-              <td><%= link_to "Download Log", time_logs_path(:format => "csv", :project_ids => project, file_name: project.name) %></td>
+              <td>
+                <%= link_to time_logs_path(:format => "csv", :project_ids => project, file_name: project.name), title: 'Download log', :class => "btn btn-primary btn-xs #{disabled}" do %>
+                    <i class="glyphicon glyphicon-cloud-download"> Log</i>
+                <% end %>
+              </td>
             </tr>
         <% end %>
         </tbody>
       </table>
     </div>
     <div class="pull-right">
-      <%= link_to "Download all Logs", time_logs_path(:format => "csv", :project_ids => @projects.collect(&:id), file_name: "All_logs"), :class => "btn btn-primary btn-sm" %>
+      <%= link_to time_logs_path(:format => "csv", :project_ids => @projects.collect(&:id), file_name: "All_logs"), title: 'Download all log', :class => "btn btn-primary btn-sm #{disabled}" do %>
+          <i class="glyphicon glyphicon-cloud-download"> All Log</i>
+      <% end %>
     </div>
   </div>
 </div><!-- /.row -->
