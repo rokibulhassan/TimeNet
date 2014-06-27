@@ -52,6 +52,9 @@
 </div><!-- /.row -->
 
 <% Groupdate.time_zone = "Pacific Time (US & Canada)" %>
-<%= line_chart TimeLog.group_by_day(:created_at).count %>
-<%= pie_chart TimeLog.group(:user_id).count %>
-<%= area_chart TimeLog.group_by_day(:created_at).group(:user_id).sum(:logged) %>
+<%= column_chart TimeLog.group_by_hour_of_day(:created_at, format: "%l %P").sum(:logged).map { |x, y| {x => conver_hour(y)} }.reduce({}, :merge) %>
+<div class="text-center">
+  <label> Fig: Show total time logged by day(X-axis show hours in a day and Y-axis shows total time logged in   hours)</label>
+</div>
+
+

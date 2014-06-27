@@ -42,4 +42,8 @@ module ApplicationHelper
     end
     return items.html_safe
   end
+
+  def conver_hour(second)
+    (second.to_f/3600).to_f.round(3)
+  end
 end
