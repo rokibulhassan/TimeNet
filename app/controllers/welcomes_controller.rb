@@ -40,4 +40,20 @@ class WelcomesController < ApplicationController
     render json: result
   end
 
+  def load_user
+    client = Client.find(params[:client_id])
+    result = client.users.collect do |user|
+      {id: user.id, name: user.name}
+    end
+    render json: result
+  end
+
+  def load_project
+    user = User.find(params[:user_id])
+    result = user.projects.collect do |project|
+      {id: project.id, name: project.name}
+    end
+    render json: result
+  end
+
 end

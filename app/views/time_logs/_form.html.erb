@@ -1,47 +1,92 @@
-<%= form_for(@time_log) do |f| %>
-    <% if @time_log.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@time_log.errors.count, "error") %> prohibited this time_log from being saved:</h2>
+<div class="row">
+  <div class="col-lg-4">
+    <%= form_for(@time_log) do |f| %>
+        <% if @time_log.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@time_log.errors.count, "error") %> prohibited this time_log from being saved:</h2>
 
-          <ul>
-            <% @time_log.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
+              <ul>
+                <% @time_log.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :start_at %>
+          <div id="start-date-timepicker" class="input-group date">
+            <%= f.text_field :start_at, :class => "form-control" %>
+            <span class="input-group-addon add-on"><i class="glyphicon glyphicon-calendar"></i></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :end_at %>
+          <div id="end-date-timepicker" class="input-group date">
+            <%= f.text_field :end_at, :class => "form-control" %>
+            <span class="input-group-addon add-on"><i class="glyphicon glyphicon-calendar"></i></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :client_id, :class => "required" %>
+          <%= select :time_log, :client_id, @clients.collect { |c| [c.business_name, c.id] }, {:prompt => 'Select Client'}, {:class => 'form-control'} %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :user_id, :class => "required" %>
+          <%= select :time_log, :user_id, [], {:prompt => 'Select User'}, {:class => 'form-control'} %>
+        </div>
+        <div class="form-group">
+          <%= f.label :project_id, :class => "required" %>
+          <%= select :time_log, :project_id, [], {:prompt => 'Select Project'}, {:class => 'form-control'} %>
+        </div>
+        <div class="form-actions">
+          <%= f.submit %>
+        </div>
+        <div class="form-group">
+          <label class="text-danger">*</label> = required field
         </div>
     <% end %>
-
-    <div class="form-group">
-      <%= f.label :start_at %>
-      <div id="start-date-timepicker" class="input-group date">
-        <%= f.text_field :start_at, :class => "form-control" %>
-        <span class="input-group-addon add-on"><i class="glyphicon glyphicon-calendar"></i></span>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :end_at %>
-      <div id="end-date-timepicker" class="input-group date">
-        <%= f.text_field :end_at, :class => "form-control" %>
-        <span class="input-group-addon add-on"><i class="glyphicon glyphicon-calendar"></i></span>
-      </div>
-    </div>
-    <div class="field">
-      <%= f.label :user_id %>
-      <br>
-      <%= select :time_log, :user_id, @users.collect { |c| [c.name, c.id] }, {:prompt => 'Select User'}, {:class => 'form-control'} %>
-    </div>
-    <div class="field">
-      <%= f.label :project_id %>
-      <br>
-      <%= select :time_log, :project_id, @projects.collect { |c| [c.name, c.id] }, {:prompt => 'Select Project'}, {:class => 'form-control'} %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-<% end %>
+  </div>
+</div>
 
 <script type="text/javascript">
     $(function () {
-        $('#start-date-timepicker, #end-date-timepicker').datetimepicker({format: "YYYY-MM-DD hh:mm:ss"});
+        $('#start-date-timepicker, #end-date-timepicker').datetimepicker({format: "YYYY-MM-DD hh:mm:ss", useSeconds: true});
+
+
+        $("#time_log_client_id").change(function () {
+            var client_id = $(this).val();
+            var items = "<option value=>Select User</option>";
+            $.ajax({
+                type: 'GET',
+                dataType: "json",
+                url: "<%= load_user_welcomes_path %>",
+                data: { client_id: client_id},
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        items += "<option value='" + item.id + "'>" + item.name + "</option>";
+                    });
+                    $("#time_log_user_id").html(items);
+                }
+            });
+        });
+
+        $("#time_log_user_id").change(function () {
+            var user_id = $(this).val();
+            var items = "<option value=>Select Project</option>";
+            $.ajax({
+                type: 'GET',
+                dataType: "json",
+                url: "<%= load_project_welcomes_path %>",
+                data: { user_id: user_id},
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        items += "<option value='" + item.id + "'>" + item.name + "</option>";
+                    });
+                    $("#time_log_project_id").html(items);
+                }
+            });
+        });
     });
 </script>

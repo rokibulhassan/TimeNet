@@ -9,6 +9,10 @@ module KyleCovell
         @current_user ||= User.where(authentication_token: params[:auth_token]).first
       end
 
+      def current_client
+        @current_client ||= current_user.present? ? current_user.client : nil
+      end
+
       def authenticate!
         error!('401 Unauthorized', 401) unless current_user
       end

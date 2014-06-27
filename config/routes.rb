@@ -16,6 +16,8 @@ KyleCovell::Application.routes.draw do
       get 'download_manager'
       get 'load_state'
       get 'load_contact'
+      get 'load_user'
+      get 'load_project'
     end
   end
   root 'welcomes#about'

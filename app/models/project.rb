@@ -2,7 +2,6 @@ class Project < ActiveRecord::Base
   paranoid
   belongs_to :customer
   has_and_belongs_to_many :contacts
-  belongs_to :user, foreign_key: :created_by
   has_many :time_logs, dependent: :destroy
   belongs_to :client
 

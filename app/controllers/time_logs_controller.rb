@@ -69,9 +69,10 @@ class TimeLogsController < ApplicationController
   def resolve_prerequisite
     @users = current_user.admin? ? User.scoped : current_client.users
     @projects = current_user.admin? ? Project.scoped : current_client.projects
+    @clients = current_user.admin? ? Client.scoped : Client.where(id: current_client.id)
   end
 
   def time_log_params
-    params.require(:time_log).permit(:start_at, :end_at, :user_id, :project_id, :idle_time)
+    params.require(:time_log).permit(:start_at, :end_at, :user_id, :project_id, :idle_time, :client_id)
   end
 end

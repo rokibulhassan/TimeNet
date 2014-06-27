@@ -4,7 +4,7 @@ class TimeLog < ActiveRecord::Base
   belongs_to :user
   belongs_to :client
 
-  before_save :set_time_logged, :associate_client
+  before_save :set_time_logged#, :associate_client
   scope :by_project, ->(project_ids) { where(project_id: project_ids) }
 
   def self.to_csv(project_ids)
