@@ -13,7 +13,7 @@ class TimeLogsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.csv { render text: TimeLog.to_csv(params[:project_ids]) }
+      format.csv { send_data TimeLog.to_csv(params[:project_ids]), :filename => "#{params[:file_name]}-#{Time.zone.now.strftime("%d-%m-%y")}.csv" }
     end
   end
 

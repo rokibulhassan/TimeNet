@@ -11,7 +11,7 @@ class TimeLog < ActiveRecord::Base
     CSV.generate do |csv|
       csv << ["Id", "End at", "Started at", "Idle time", "Logged", "User Name", "Project Name"]
       TimeLog.by_project(project_ids).each do |tlg|
-        csv << [tlg.id, tlg.start_at.strftime("%b %d, %Y | %I:%M %p"), tlg.end_at.strftime("%b %d, %Y | %I:%M %p"), tlg.idle_time_str, tlg.time_logged_str, tlg.user.name, tlg.project.name]
+        csv << [tlg.id, tlg.start_at.strftime("%b %d, %Y | %I:%M %p"), tlg.end_at.strftime("%b %d, %Y | %I:%M %p"), tlg.idle_time_str, tlg.time_logged_str, tlg.user.try(:name), tlg.project.name]
       end
     end
   end
