@@ -5,5 +5,7 @@
     <div class="form-group">
       <%= file_field_tag 'file', :accept => 'text/csv', :multiple => false %>
     </div>
-    <%= submit_tag "Submit", :class => "btn btn-primary btn-xs" %>
+    <%= button_tag(type: "submit", class: "btn btn-xs btn-info") do %>
+        <i class="glyphicon glyphicon-upload"></i> Upload
+    <% end %>
 <% end %>
