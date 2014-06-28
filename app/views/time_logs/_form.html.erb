@@ -34,13 +34,14 @@
 
         <div class="form-group">
           <%= f.label :user_id, :class => "required" %>
-          <%= select :time_log, :user_id, [], {:prompt => 'Select User'}, {:class => 'form-control'} %>
+          <%= select :time_log, :user_id, @users.collect { |c| [c.name, c.id] }, {:prompt => 'Select User'}, {:class => 'form-control'} %>
         </div>
         <div class="form-group">
           <%= f.label :project_id, :class => "required" %>
-          <%= select :time_log, :project_id, [], {:prompt => 'Select Project'}, {:class => 'form-control'} %>
+          <%= select :time_log, :project_id, @projects.collect { |c| [c.name, c.id] }, {:prompt => 'Select Project'}, {:class => 'form-control'} %>
         </div>
         <div class="form-actions">
+          <%= f.hidden_field :created_by, value: current_user.id %>
           <%= f.submit %>
         </div>
         <div class="form-group">

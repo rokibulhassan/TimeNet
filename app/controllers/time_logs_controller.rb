@@ -73,6 +73,6 @@ class TimeLogsController < ApplicationController
   end
 
   def time_log_params
-    params.require(:time_log).permit(:start_at, :end_at, :user_id, :project_id, :idle_time, :client_id)
+    params.require(:time_log).permit(:start_at, :end_at, :user_id, :project_id, :idle_time, :client_id, :created_by)
   end
 end

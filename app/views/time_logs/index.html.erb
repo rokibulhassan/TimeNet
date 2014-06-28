@@ -25,7 +25,19 @@
               <td><%= time_log.time_logged_str %></td>
               <td><%= time_log.try(:user).try(:name) %></td>
               <td><%= time_log.try(:project).try(:name) %></td>
-              <td><%= link_to 'Destroy', time_log, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              <td>
+                <%= link_to time_log, title: 'show' do %>
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                <% end %>
+
+                <%= link_to edit_time_log_path(time_log), title: 'edit' do %>
+                    <i class="glyphicon glyphicon-edit"></i>
+                <% end %>
+
+                <%= link_to time_log, method: :delete, data: {confirm: 'Are you sure?'}, title: 'delete' do %>
+                    <i class="glyphicon glyphicon-trash"></i>
+                <% end %>
+              </td>
             </tr>
         <% end %>
         </tbody>
