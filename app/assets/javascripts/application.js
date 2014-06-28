@@ -17,3 +17,4 @@
 //= require bootstrap-datetimepicker
 //= require turbolinks
 //= require_tree .
+//= require dataTables/jquery.dataTables

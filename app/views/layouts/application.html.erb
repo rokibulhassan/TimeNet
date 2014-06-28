@@ -94,7 +94,7 @@
 
 <script type="application/javascript">
     $(function () {
-
+        $('.data-table').dataTable({});
         $("#customer_country_id, #client_country_id").change(function () {
             var country = $(this).val();
             var items = "<option value=>Select State</option>";

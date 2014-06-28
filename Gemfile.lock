@@ -5,6 +5,14 @@ GIT
     simple_captcha (0.1.6)
 
 GIT
+  remote: git://github.com/rweng/jquery-datatables-rails.git
+  revision: f7f121b6c31eb5f92a1596d79936c11cff89ade7
+  specs:
+    jquery-datatables-rails (1.12.2)
+      jquery-rails
+      sass-rails
+
+GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 128f373e151528c9516ea8df32831fc60ac1c35d
   branch: bootstrap3
@@ -221,6 +229,7 @@ DEPENDENCIES
   grape-swagger
   groupdate
   jbuilder (~> 1.2)
+  jquery-datatables-rails!
   jquery-rails
   less-rails
   momentjs-rails (~> 2.5.0)
