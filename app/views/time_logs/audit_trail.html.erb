@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h1>Versions</h1>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover ">
+        <thead>
+        <tr>
+          <th>Item Type</th>
+          <th>Event</th>
+          <th>Who Done It</th>
+          <th>Created at</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @versions.each do |version| %>
+            <tr>
+              <td><%= version.item_type %></td>
+              <td><%= version.event %></td>
+              <td><%= link_to_user(User.where(id: version.whodunnit)) %></td>
+              <td><%= formated_datetime(version.created_at) %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div><!-- /.row -->
+

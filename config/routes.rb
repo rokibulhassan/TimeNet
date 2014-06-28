@@ -21,7 +21,11 @@ KyleCovell::Application.routes.draw do
     end
   end
   resources :request_infos
-  resources :time_logs
+  resources :time_logs do
+    member do
+      get 'audit_trail'
+    end
+  end
   resources :welcomes do
     collection do
       get 'dashboard'
@@ -34,7 +38,6 @@ KyleCovell::Application.routes.draw do
     end
   end
   root 'welcomes#about'
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

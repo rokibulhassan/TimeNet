@@ -4,6 +4,8 @@ class TimeLog < ActiveRecord::Base
   belongs_to :user
   belongs_to :client
 
+  has_paper_trail
+
   validates :start_at, :end_at, :client_id, :user_id, :project_id, presence: true
   validate :validate_end_at
 

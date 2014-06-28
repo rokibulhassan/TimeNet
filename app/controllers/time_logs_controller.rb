@@ -1,7 +1,7 @@
 class TimeLogsController < ApplicationController
-  before_action :set_time_log, only: [:show, :edit, :update, :destroy]
+  before_action :set_time_log, only: [:show, :edit, :update, :destroy, :audit_trail]
   before_action :resolve_prerequisite, only: [:new, :edit, :create, :update]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:audit_trail]
 
   def index
     if current_user.admin?
@@ -61,15 +61,22 @@ class TimeLogsController < ApplicationController
     end
   end
 
+  def audit_trail
+    @versions = @time_log.versions
+    respond_to do |format|
+      format.html
+    end
+  end
+
   private
   def set_time_log
     @time_log = TimeLog.find(params[:id])
   end
 
   def resolve_prerequisite
-    @users = current_user.admin? ? User.scoped : current_client.users
-    @projects = current_user.admin? ? Project.scoped : current_client.projects
-    @clients = current_user.admin? ? Client.scoped : Client.where(id: current_client.id)
+    @users = current_user.admin? ? User.all : current_client.users
+    @projects = current_user.admin? ? Project.all : current_client.projects
+    @clients = current_user.admin? ? Client.all : Client.where(id: current_client.id)
   end
 
   def time_log_params

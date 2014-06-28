@@ -26,7 +26,7 @@
               <td><%= time_log.try(:user).try(:name) %></td>
               <td><%= time_log.try(:project).try(:name) %></td>
               <td>
-                <%= link_to time_log, title: 'show' do %>
+                <%= link_to audit_trail_time_log_path(time_log), title: 'show' do %>
                     <i class="glyphicon glyphicon-list-alt"></i>
                 <% end %>
 
