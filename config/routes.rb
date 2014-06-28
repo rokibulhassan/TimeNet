@@ -1,12 +1,25 @@
 KyleCovell::Application.routes.draw do
   mount KyleCovell::API => '/api'
-  
+
   devise_for :users
   resources :users_admin, :controller => 'users'
   resources :clients
-  resources :projects
-  resources :contacts
-  resources :customers
+  resources :projects do
+    collection do
+      post 'upload'
+    end
+
+  end
+  resources :contacts do
+    collection do
+      post 'upload'
+    end
+  end
+  resources :customers do
+    collection do
+      post 'upload'
+    end
+  end
   resources :request_infos
   resources :time_logs
   resources :welcomes do

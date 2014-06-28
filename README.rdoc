@@ -1,5 +1,5 @@
 == README
-
+===============================API Documentation======================================
  i)  Authentication
        Method: Post
        URL:  http://localhost:3000/api/v1/users/authenticate.json
@@ -22,3 +22,22 @@
  v) Return all time logs
          Method: Post
          URL: http://localhost:3000/api/v1/time_logs.json?auth_token=your_auth_token
+
+==========================CSV file Uploda#Sample data==================================
+i) customer.csv
+
+business_name,billing_address,street_address,suit_unit,city,zip_code,country_id,state_id,phone,website,contact_ids
+"RokibulHasan","DhakaBangladesh","Mirpur-2","4B","Dhaka","1000","1002","1","01727943349","rokibulhasan.me","8"
+"RokibulHasan2","DhakaBangladesh","Mirpur-2","4B","Dhaka","1000","1002","1","01727943349","rokibulhasan.me","8"
+
+ii) contact.csv
+first_name,last_name,email,title,office_phone,mobile_phone,contact_method,customer_id
+"Rokibul","Hasan","rakib@gmail.com","01727943347","01727943347","office_phone","10"
+"Rokibul","Hasan","rakib2@gmail.com","01727943347","01727943347","office_phone","10"
+
+iii) project.csc
+name,number,customer_id,contact_ids,start_date,end_date,notes
+"Test Project","","10","10","2014-06-28 01:58:34","2014-06-28 01:58:34","test note"
+"Test Project","","10","10","2014-06-28 01:58:34","2014-06-28 01:58:34","test note"
+
+

@@ -1,0 +1,9 @@
+<%= form_tag '/projects/upload', multipart: true, :class => "form" do %>
+    <h2>
+      <small>Upload Projects</small>
+    </h2>
+    <div class="form-group">
+      <%= file_field_tag 'file', :accept => 'text/csv', :multiple => false %>
+    </div>
+    <%= submit_tag "Submit", :class => "btn btn-primary btn-xs" %>
+<% end %>

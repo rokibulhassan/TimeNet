@@ -20,6 +20,16 @@ class Contact < ActiveRecord::Base
     [self.first_name, self.last_name].join(" ")
   end
 
+  def self.import(file, current_user, current_client)
+    CSV.foreach(file.path, headers: true) do |row|
+      contact=Contact.new(row.to_hash)
+      contact.user=current_user
+      contact.client=current_client
+      contact.save!
+    end
+  end
+
+
   private
   def validate_customer
     self.errors.add(:base, "Failed! Can not change customer.") if !new_record? && customer_id_changed?

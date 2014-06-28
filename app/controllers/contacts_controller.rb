@@ -56,6 +56,17 @@ class ContactsController < ApplicationController
     end
   end
 
+  def upload
+    begin
+      Contact.import(params[:file], current_user, current_client)
+      flash[:notice] = 'Contacts successfully uploaded.'
+    rescue Exception => ex
+      flash[:error] = ex.message
+    end
+    redirect_to contacts_path
+  end
+
+
   # DELETE /contacts/1
   # DELETE /contacts/1.json
   def destroy

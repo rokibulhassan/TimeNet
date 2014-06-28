@@ -55,6 +55,17 @@ class CustomersController < ApplicationController
     end
   end
 
+  def upload
+    begin
+      Customer.import(params[:file], current_user, current_client)
+      flash[:notice] = 'Customers successfully uploaded.'
+    rescue Exception => ex
+      flash[:error] = ex.message
+    end
+    redirect_to customers_path
+  end
+
+
   # DELETE /customers/1
   # DELETE /customers/1.json
   def destroy

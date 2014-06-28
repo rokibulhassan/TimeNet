@@ -56,6 +56,16 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def upload
+    begin
+      Project.import(params[:file], current_user, current_client)
+      flash[:notice] = 'Projects successfully uploaded.'
+    rescue Exception => ex
+      flash[:error] = ex.message
+    end
+    redirect_to projects_path
+  end
+
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy

@@ -11,10 +11,19 @@ class Customer < ActiveRecord::Base
 
   attr_accessor :contact_ids
 
-  #before_save :associate_client
   after_save :associate_contacts
 
   scope :by_client, ->(client_id) { where(client_id: client_id) }
+
+  def self.import(file, current_user, current_client)
+    CSV.foreach(file.path, headers: true) do |row|
+      customer=Customer.new(row.to_hash)
+      customer.user=current_user
+      customer.client=current_client
+      customer.save!
+    end
+  end
+
 
   private
 
@@ -23,9 +32,5 @@ class Customer < ActiveRecord::Base
     contacts.each do |contact|
       contact.update_column(:customer_id, self.id)
     end
-  end
-
-  def associate_client
-    self.client_id = self.user.client_id
   end
 end

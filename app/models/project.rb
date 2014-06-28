@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   belongs_to :customer
   has_and_belongs_to_many :contacts
   has_many :time_logs, dependent: :destroy
+  belongs_to :user, foreign_key: :created_by
   belongs_to :client
 
   validates :name, presence: true
@@ -28,6 +29,15 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def self.import(file, current_user, current_client)
+    CSV.foreach(file.path, headers: true) do |row|
+      project=Project.new(row.to_hash)
+      project.number=Project.uniq_number
+      project.user=current_user
+      project.client=current_client
+      project.save!
+    end
+  end
 
   private
   def validate_customer
