@@ -9,7 +9,7 @@ class Customer < ActiveRecord::Base
   validates :phone, presence: true
   validates :zip_code, numericality: true, :allow_blank => true
 
-  attr_accessor :contact_ids
+  attr_accessor :contact_ids, :country_name
 
   after_save :associate_contacts
 
@@ -20,6 +20,7 @@ class Customer < ActiveRecord::Base
       customer=Customer.new(row.to_hash)
       customer.user=current_user
       customer.client=current_client
+      customer.country_id=Country.by_name(customer.country_name).first.id rescue 1228 #Default set to USA
       customer.save!
     end
   end
