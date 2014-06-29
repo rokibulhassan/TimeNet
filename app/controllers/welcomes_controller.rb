@@ -23,6 +23,12 @@ class WelcomesController < ApplicationController
     end
   end
 
+  def uploader
+    respond_to do |format|
+      format.html
+    end
+  end
+
 
   def load_state
     @states = State.by_country(params[:country])

@@ -31,6 +31,7 @@ KyleCovell::Application.routes.draw do
       get 'dashboard'
       get 'about'
       get 'download_manager'
+      get 'uploader'
       get 'load_state'
       get 'load_contact'
       get 'load_user'
