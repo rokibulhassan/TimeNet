@@ -11,6 +11,7 @@
           <th>Email</th>
           <th>Comments</th>
           <th>Query</th>
+          <th>Created At</th>
           <th></th>
         </tr>
         </thead>
@@ -23,6 +24,7 @@
               <td><%= request_info.email %></td>
               <td><%= request_info.comments %></td>
               <td><%= request_info.query %></td>
+              <td><%= formated_datetime(request_info.created_at) %></td>
               <td>
                 <%= link_to request_info, title: 'show' do %>
                     <i class="glyphicon glyphicon-list-alt"></i>
