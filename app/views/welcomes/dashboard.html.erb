@@ -47,8 +47,10 @@
               <td><%= total_time_logged_str(project.time_logged) %></td>
               <td><%= total_time_logged_str(project.active_time_logged) %></td>
               <td>
-                <%= link_to time_logs_path(:format => "csv", :project_ids => project, file_name: project.name), title: 'Download log', :class => "btn btn-primary btn-xs #{disabled}" do %>
-                    <i class="glyphicon glyphicon-cloud-download"> Log</i>
+                <% if current_user.can_create_reports? %>
+                    <%= link_to time_logs_path(:format => "csv", :project_ids => project, file_name: project.name), title: 'Download log', :class => "btn btn-primary btn-xs" do %>
+                        <i class="glyphicon glyphicon-cloud-download"> Log</i>
+                    <% end %>
                 <% end %>
               </td>
             </tr>
@@ -57,8 +59,10 @@
       </table>
     </div>
     <div class="pull-right">
-      <%= link_to time_logs_path(:format => "csv", :project_ids => @projects.collect(&:id), file_name: "All_logs"), title: 'Download all log', :class => "btn btn-primary btn-sm #{disabled}" do %>
-          <i class="glyphicon glyphicon-cloud-download"> All Log</i>
+      <% if current_user.can_create_reports? %>
+          <%= link_to time_logs_path(:format => "csv", :project_ids => @projects.collect(&:id), file_name: "All_logs"), title: 'Download all log', :class => "btn btn-primary btn-sm" do %>
+              <i class="glyphicon glyphicon-cloud-download"> All Log</i>
+          <% end %>
       <% end %>
     </div>
   </div>
