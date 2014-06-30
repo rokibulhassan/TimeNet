@@ -47,7 +47,7 @@
   </div>
 </div><!-- /.row -->
 
-<%= bar_chart TimeLog.includes(:project).scoped.group(:project_id).order('projects.start_date asc').sum(:logged).map { |k, v| [Project.find(k).number, conver_hour(v)] } %>
+<%= bar_chart TimeLog.includes(:project).group(:project_id).order('projects.start_date asc').sum(:logged).map { |k, v| [Project.find(k).number, conver_hour(v)] } %>
 <div class="text-center">
   <label> Fig: Show total time logged by project(X-axis shows total time logged in hours and Y-axis show all projects)</label>
 </div>
