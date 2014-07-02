@@ -11,22 +11,33 @@ class Contact < ActiveRecord::Base
   validates :office_phone, presence: true
   validates :contact_method, presence: true
   #validates :customer_id, presence: true
-  validate :validate_customer
+  #validate :validate_customer
 
   scope :by_customer, ->(customer_id) { where(customer_id: customer_id) }
-  scope :alphabetically, ->{ order("last_name ASC")}
+  scope :alphabetically, -> { order("last_name ASC") }
 
   def name
     [self.first_name, self.last_name].join(" ")
   end
 
   def self.import(file, current_user, current_client)
+    errors=[]
+    line, success, failed = 1, 0, 0
+
     CSV.foreach(file.path, headers: true) do |row|
+      line+=1
       contact=Contact.new(row.to_hash)
       contact.user=current_user
       contact.client=current_client
-      contact.save!
+      begin
+        contact.save!
+        success+=1
+      rescue Exception => ex
+        failed+=1
+        errors << "Line##{line}::For #{contact.name} #{contact.errors.full_messages}"
+      end
     end
+    {:success => success, :failed => failed, :errors => errors}
   end
 
 

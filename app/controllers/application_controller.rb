@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
   before_filter :update_sanitized_params, if: :devise_controller?
 
-  helper_method :current_client
+  helper_method :current_client, :uploaded_notice
 
   def update_sanitized_params
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:password_change_required) }
@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
 
   def current_client
     signed_in? ? current_user.client : nil
+  end
+
+  def uploaded_notice(klass, success, failed)
+    "<b class='badge alert-info'>#{success}</b> #{klass} successfully uploaded and  <b class='badge alert-danger'>#{failed}</b> #{klass} Failed to Upload.".html_safe
   end
 
   protected

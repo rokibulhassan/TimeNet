@@ -58,8 +58,9 @@ class ContactsController < ApplicationController
 
   def upload
     begin
-      Contact.import(params[:file], current_user, current_client)
-      flash[:notice] = 'Contacts successfully uploaded.'
+      response = Contact.import(params[:file], current_user, current_client)
+      flash[:notice] = uploaded_notice('Contacts', response[:success], response[:failed])
+      flash[:error] = response[:errors] if response[:errors].present?
     rescue Exception => ex
       flash[:error] = ex.message
     end

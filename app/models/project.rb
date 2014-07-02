@@ -12,6 +12,8 @@ class Project < ActiveRecord::Base
   #validates :contact_id, presence: true
   validate :validate_customer
 
+  attr_accessor :customer_name
+
   scope :by_customer, ->(customer_id) { where(customer_id: customer_id) }
 
   def time_logged
@@ -30,13 +32,25 @@ class Project < ActiveRecord::Base
   end
 
   def self.import(file, current_user, current_client)
+    errors=[]
+    line, success, failed = 1, 0, 0
+
     CSV.foreach(file.path, headers: true) do |row|
+      line+=1
       project=Project.new(row.to_hash)
       project.number=Project.uniq_number
       project.user=current_user
       project.client=current_client
-      project.save!
+      begin
+        project.customer_id=Customer.by_name(project.customer_name).first.id
+        project.save!
+        success+=1
+      rescue Exception => ex
+        failed+=1
+        errors << "Line##{line}::For #{project.name} #{project.errors.full_messages}"
+      end
     end
+    {:success => success, :failed => failed, :errors => errors}
   end
 
   private

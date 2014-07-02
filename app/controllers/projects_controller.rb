@@ -58,8 +58,9 @@ class ProjectsController < ApplicationController
 
   def upload
     begin
-      Project.import(params[:file], current_user, current_client)
-      flash[:notice] = 'Projects successfully uploaded.'
+      response = Project.import(params[:file], current_user, current_client)
+      flash[:notice] = uploaded_notice('Projects', response[:success], response[:failed])
+      flash[:error] = response[:errors] if response[:errors].present?
     rescue Exception => ex
       flash[:error] = ex.message
     end
@@ -84,6 +85,6 @@ class ProjectsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
-    params.require(:project).permit(:name, :number, :customer_id, {contact_ids: []}, :start_date, :end_date, :notes, :created_by, :client_id)
+    params.require(:project).permit(:name, :number, :customer_id, {contact_ids: []}, :start_date, :end_date, :notes, :created_by, :client_id, :customer_name)
   end
 end

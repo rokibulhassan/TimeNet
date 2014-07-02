@@ -57,8 +57,9 @@ class CustomersController < ApplicationController
 
   def upload
     begin
-      Customer.import(params[:file], current_user, current_client)
-      flash[:notice] = 'Customers successfully uploaded.'
+      response = Customer.import(params[:file], current_user, current_client)
+      flash[:notice] = uploaded_notice('Customers', response[:success], response[:failed])
+      flash[:error] = response[:errors] if response[:errors].present?
     rescue Exception => ex
       flash[:error] = ex.message
     end

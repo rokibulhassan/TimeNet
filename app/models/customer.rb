@@ -14,15 +14,27 @@ class Customer < ActiveRecord::Base
   after_save :associate_contacts
 
   scope :by_client, ->(client_id) { where(client_id: client_id) }
+  scope :by_name, ->(name) { where(business_name: name) }
 
   def self.import(file, current_user, current_client)
+    errors=[]
+    line, success, failed = 1, 0, 0
+
     CSV.foreach(file.path, headers: true) do |row|
+      line+=1
       customer=Customer.new(row.to_hash)
       customer.user=current_user
       customer.client=current_client
       customer.country_id=Country.by_name(customer.country_name).first.id rescue 1228 #Default set to USA
-      customer.save!
+      begin
+        customer.save!
+        success+=1
+      rescue Exception => ex
+        failed+=1
+        errors << "Line##{line}::For #{customer.business_name} #{customer.errors.full_messages}"
+      end
     end
+    {:success => success, :failed => failed, :errors => errors}
   end
 
 
