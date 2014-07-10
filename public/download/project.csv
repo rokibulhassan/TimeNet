@@ -1,2 +1,2 @@
-name,number,customer_name,contact_ids,start_date,end_date,notes
-"Test Project","","RokibulHasan10","10","2014-06-28 01:58:34","2014-06-28 01:58:34","test note"
+name,customer_name,contact_ids,start_date,end_date,notes
+"Test Project XXX","RokibulHasan10","10","2014-06-28","2014-06-28","test note"
