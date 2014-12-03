@@ -48,6 +48,7 @@ module KyleCovell
 
       desc "It will create time logs for corresponding user and project"
       params do
+        requires :client_id, :type => Integer, :desc => "Client id"
         requires :user_id, :type => Integer, :desc => "User id"
         requires :project_id, :type => Integer, :desc => "Project id"
         requires :start_at, :type => String, :desc => "Starting date and time"
@@ -56,7 +57,7 @@ module KyleCovell
       end
       post do
         begin
-          time_log = TimeLog.new(user_id: params[:user_id], project_id: params[:project_id], start_at: params[:start_at],
+          time_log = TimeLog.new(client_id: params[:client_id], user_id: params[:user_id], project_id: params[:project_id], start_at: params[:start_at],
                                  end_at: params[:end_at], idle_time: params[:idle_time])
           time_log.save!
         rescue Exception => ex
